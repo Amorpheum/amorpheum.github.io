@@ -1,0 +1,50 @@
+.new {
+	animation-duration: 0.5s;
+	animation-name: blink;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+	color: red;
+	font-style: italic;
+	font-weight: bold;
+}
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.2;
+    }
+}
+
+.meauthor {
+	color: #555555;
+	font-weight: bold;
+}
+
+.paper_title {
+	font-size: 1.1em;
+	font-weight: bolder;
+}
+
+.video_ico {
+	width: 1.2em;
+	height: 1.2em;
+	margin-top: -0.4em;
+	margin-left: 0.4em;
+}
+
+.header_ref {
+	padding-top: 45px; 
+	margin-top: -40px;
+}
+
+.header_border {
+	background-color: #e5e5e5;
+	border-radius: .5em;
+	padding: 0.1em 0.5em;
+	margin: 0em -.25em;
+	font-weight: bold;
+	text-align: center;
+}
