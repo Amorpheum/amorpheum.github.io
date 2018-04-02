@@ -179,6 +179,11 @@
             </div>
             <br/>
 
+            <div id="skills" class="header_ref">
+                <h3 class="header_border">Skills</h2>
+                <span id="skillsOverview_chart"><svg></svg></span>
+                <span id="skillsOverview_chart2"><svg></svg></span>
+            </div>
 <!--             <div id="skills" class="header_ref">
             	<h3 class="header_border">Skills</h2>
                 <table width="100%">
@@ -215,6 +220,46 @@
     <script src="./js/jquery.smooth-scroll.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/bootswatch.js"></script>
+
+    <!-- d3.js for visualisations -->
+    <script src="./js/d3.v4.min.js"></script>
+
+    <script src="./js/bubble_chart.js"></script>
+    <script>
+        d3.csv('./data/skillsOverview.csv', function(error, data) {
+            if (error) {
+                console.error('Error getting or parsing the data.');
+                throw error;
+            }
+            var chart = bubbleChart()
+                            .width(400)
+                            .height(480)
+                            .minRadius(30)
+                            .maxRadius(60)
+                            .forceApart(-500)
+                            .showTitleOnCircle(true);
+
+            // selection.datum() returns the bound datum for the first element in the selection and doesn't join the specified array of data with the selected elements
+            d3.select('#skillsOverview_chart').datum(data).call(chart);
+        });
+        d3.csv('./data/skillsOverview.csv', function(error, data) {
+            if (error) {
+                console.error('Error getting or parsing the data.');
+                throw error;
+            }
+            var chart = bubbleChart()
+                            .width(400)
+                            .height(480)
+                            .minRadius(30)
+                            .maxRadius(60)
+                            .forceApart(-500)
+                            .showTitleOnCircle(true);
+
+            // selection.datum() returns the bound datum for the first element in the selection and doesn't join the specified array of data with the selected elements
+            d3.select('#skillsOverview_chart2').datum(data).call(chart);
+        });
+    </script>
+    
 </body>
 
 </html>
