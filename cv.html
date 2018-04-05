@@ -56,7 +56,7 @@
         
         <section>
             <div id="education" class="header_ref">
-                <h3 class="header_border">Education</h2>
+                <h3 class="header_border">Education</h3>
                 <p>
                     <p class="pull-right"><strong>Jan 2013 - <i>present</i></strong></p>
                     <h4><strong>Singapore Management University</strong> - PhD in Information Systems</h4>
@@ -68,8 +68,43 @@
             </div>
             <br/>
 
+            <div id="workExperience" class="header_ref">
+                <h3 class="header_border">Work Experience</h3>
+                <p>
+                    <h4><strong>DSO National Laboratories, Singapore</strong></h4>
+                    <p class="pull-right"><strong>Jan 2007 - Dec 2012</strong></p>
+                    <p><strong>Senior Member of Technical Staff</strong></p>
+                    <ul>
+                        <li>Responsible for project management; formulation of proposals, seeking approval for funding, resource management of manpower, capital and expenses.</li>
+                        <li>Lead research in training and learning.</li>
+                        <li>Worked in:
+                            <ul>
+                                <li>Using cognitive task analysis to elicit tacit understanding.</li>
+                                <li>Using contextual inquiry to gather user requirements.</li>
+                                <li>Creating web-based tools for scenario based training.</li>
+                                <li>Developing information visualisations.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+                <hr>
+                <p>
+                    <h4><strong>Institute for Infocomm Research, A*STAR, Singapore</strong></h4>
+                    <p class="pull-right"><strong>Aug 2004 - May 2005</strong></p>
+                    <p><strong>FYP Student, Media Processing Laboratory</strong></p>
+                    <p class="pull-right"><strong>Jul 2004 - Aug 2004</strong></p>
+                    <p><strong>Student Researcher, Media Processing Laboratory</strong></p>
+                    <p class="pull-right"><strong>Jan 2004 - Jun 2004</strong></p>
+                    <p><strong>IA Student, Media Processing Laboratory</strong></p>
+                    <ul>
+                        <li>Developed fast algorithms for the H.264/AVC video compression standard.</li>
+                    </ul>
+                </p>
+            </div>
+            <br/>
+
             <div id="teaching" class="header_ref">
-            	<h3 class="header_border">Teaching</h2>
+            	<h3 class="header_border">Teaching</h3>
         		<p>
 					<h4><strong>Interaction Design and Prototyping</strong></h4>
 					<p class="pull-right"><strong>80 hours (2017)</strong></p>
@@ -119,43 +154,14 @@
             </div>
             <br/>
 
-            <div id="workExperience" class="header_ref">
-            	<h3 class="header_border">Work Experience</h2>
-                <p>
-                    <h4><strong>DSO National Laboratories, Singapore</strong></h4>
-                    <p class="pull-right"><strong>Jan 2007 - Dec 2012</strong></p>
-                    <p><strong>Senior Member of Technical Staff</strong></p>
-                    <ul>
-                        <li>Responsible for project management; formulation of proposals, seeking approval for funding, resource management of manpower, capital and expenses.</li>
-                        <li>Lead research in training and learning.</li>
-                        <li>Worked in:
-                            <ul>
-                                <li>Using cognitive task analysis to elicit tacit understanding.</li>
-                                <li>Using contextual inquiry to gather user requirements.</li>
-                                <li>Creating web-based tools for scenario based training.</li>
-                                <li>Developing information visualisations.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </p>
-                <hr>
-                <p>
-                    <h4><strong>Institute for Infocomm Research, A*STAR, Singapore</strong></h4>
-                    <p class="pull-right"><strong>Aug 2004 - May 2005</strong></p>
-                    <p><strong>FYP Student, Media Processing Laboratory</strong></p>
-                    <p class="pull-right"><strong>Jul 2004 - Aug 2004</strong></p>
-                    <p><strong>Student Researcher, Media Processing Laboratory</strong></p>
-                    <p class="pull-right"><strong>Jan 2004 - Jun 2004</strong></p>
-                    <p><strong>IA Student, Media Processing Laboratory</strong></p>
-                    <ul>
-                        <li>Developed fast algorithms for the H.264/AVC video compression standard.</li>
-                    </ul>
-                </p>
+            <div id="skills" class="header_ref">
+                <h3 class="header_border">Skills</h3>
+                <span id="skillsOverview_chart1"><svg></svg></span>
+                <span id="skillsOverview_chart2"><svg></svg></span>
             </div>
-            <br/>
 
             <div id="service" class="header_ref">
-            	<h3 class="header_border">Service</h2>
+            	<h3 class="header_border">Service</h3>
             	<table style="vertical-align: top; width: 100%;">
             		<tr>
             			<td>
@@ -179,13 +185,10 @@
             </div>
             <br/>
 
-            <div id="skills" class="header_ref">
-                <h3 class="header_border">Skills</h2>
-                <span id="skillsOverview_chart"><svg></svg></span>
-                <span id="skillsOverview_chart2"><svg></svg></span>
-            </div>
+
+
 <!--             <div id="skills" class="header_ref">
-            	<h3 class="header_border">Skills</h2>
+            	<h3 class="header_border">Skills</h3>
                 <table width="100%">
                     <tr>
                         <td>Human Computer Interaction</td>
@@ -240,7 +243,7 @@
                             .showTitleOnCircle(true);
 
             // selection.datum() returns the bound datum for the first element in the selection and doesn't join the specified array of data with the selected elements
-            d3.select('#skillsOverview_chart').datum(data).call(chart);
+            d3.select('#skillsOverview_chart1').datum(data).call(chart);
         });
         d3.csv('./data/skillsOverview.csv', function(error, data) {
             if (error) {
