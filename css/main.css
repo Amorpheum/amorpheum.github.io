@@ -1,3 +1,4 @@
+
 .new {
 	animation-duration: 0.5s;
 	animation-name: blink;
@@ -47,4 +48,38 @@
 	margin: 0em -.25em 0.5em -.25em;
 	font-weight: bold;
 	text-align: center;
+}
+
+.skillsText {
+	text-align: right;
+	padding: 0px 10px 0px;
+	/*width: 10%;*/
+}
+
+.skillsBar {
+	width: 15%;
+}
+
+div.rating-circle-full {
+      width: 14px;
+      height: 14px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: #6699ff;
+      display: inline-block;
+}
+
+div.rating-circle-empty {
+      width: 14px;
+      height: 14px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: #eaeaea;
+      display: inline-block;
+}
+
+table.cvtabs td {
+	
 }
