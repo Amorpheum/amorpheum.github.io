@@ -80,6 +80,38 @@ div.rating-circle-empty {
       display: inline-block;
 }
 
-table.cvtabs td {
-	
+.wrapper { 
+  /*border : 2px solid #000; */
+  /*overflow:hidden;*/
+}
+
+.wrapper div {
+   /*min-height: 200px;*/
+   /*padding: 10px;*/
+}
+#one {
+  /*background-color: gray;*/
+  float:left; 
+  margin-right:2em;
+  /*width:350px;*/
+  /*border-right:2px solid #000;*/
+}
+#two { 
+  /*background-color: white;*/
+  overflow:hidden;
+  /*margin:10px;*/
+  /*border:2px dashed #ccc;*/
+  /*min-height:170px;*/
+  min-width: 450px;
+}
+
+@media screen and (max-width: 400px) {
+   #one { 
+    float: none;
+    margin-right:0;
+    margin-bottom: 1em;
+    width:auto;
+    /*border:0;*/
+    /*border-bottom:2px solid #000;    */
+  }
 }
