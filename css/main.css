@@ -93,7 +93,7 @@ div.rating-circle-empty {
   /*background-color: gray;*/
   float:left; 
   margin-right:2em;
-  min-width: 450px;
+  min-width: 500px;
   /*width:350px;*/
   /*border-right:2px solid #000;*/
 }
@@ -103,10 +103,10 @@ div.rating-circle-empty {
   /*margin:10px;*/
   /*border:2px dashed #ccc;*/
   /*min-height:170px;*/
-  min-width: 450px;
+  min-width: 500px;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
    #one { 
     float: none;
     margin-right:0;
