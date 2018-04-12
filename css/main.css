@@ -93,6 +93,7 @@ div.rating-circle-empty {
   /*background-color: gray;*/
   float:left; 
   margin-right:2em;
+  margin-bottom: 1em;
   min-width: 350px;
   /*width:350px;*/
   /*border-right:2px solid #000;*/
@@ -110,7 +111,7 @@ div.rating-circle-empty {
    #one { 
     float: none;
     margin-right:0;
-    margin-bottom: 1em;
+/*    margin-bottom: 1em;*/
     width:auto;
     /*border:0;*/
     /*border-bottom:2px solid #000;    */
