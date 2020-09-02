@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Digital World"
-permalink: /teaching/digitalworld
+permalink: /teaching/digitalworld/
 author_profile: true
 redirect_from: 
 #   - /teaching/

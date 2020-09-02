@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Web Application Development"
-permalink: /teaching/webappdev
+permalink: /teaching/webappdev/
 author_profile: true
 redirect_from: 
 #   - /teaching/

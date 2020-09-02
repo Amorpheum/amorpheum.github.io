@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Computational Thinking and Design"
-permalink: /teaching/compthinking
+permalink: /teaching/compthinking/
 author_profile: true
 redirect_from: 
 #   - /teaching/

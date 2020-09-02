@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Mobile & Pervasive Technology & Applications"
-permalink: /teaching/mobilepervasivetech
+permalink: /teaching/mobilepervasivetech/
 author_profile: true
 redirect_from: 
 #   - /teaching/

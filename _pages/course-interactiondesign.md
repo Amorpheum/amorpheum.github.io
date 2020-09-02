@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Interaction Design and Prototyping"
-permalink: /teaching/interactiondesign
+permalink: /teaching/interactiondesign/
 author_profile: true
 redirect_from: 
 #   - /teaching/
