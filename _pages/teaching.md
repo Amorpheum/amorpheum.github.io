@@ -37,7 +37,7 @@ redirect_from:
 
 
 ## Teaching Statement
-Read it [here](/teaching/teaching-statement).
+Read it [here](/teaching/teaching-statement/).
 
 
 ## Teaching Experience

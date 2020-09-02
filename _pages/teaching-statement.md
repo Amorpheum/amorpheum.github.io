@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Teaching Statement"
-permalink: /teaching/teaching-statement
+permalink: /teaching/teaching-statement/
 author_profile: true
 redirect_from: 
 #   - /teaching/
