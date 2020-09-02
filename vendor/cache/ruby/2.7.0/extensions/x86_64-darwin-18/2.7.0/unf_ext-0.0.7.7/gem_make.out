@@ -1,0 +1,16 @@
+current directory: /Users/kenny/dev/personalpage/vendor/cache/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+/usr/local/opt/ruby/bin/ruby -I /usr/local/Cellar/ruby/2.7.1_2/lib/ruby/2.7.0 -r ./siteconf20200902-29181-dgxopr.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/kenny/dev/personalpage/vendor/cache/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /Users/kenny/dev/personalpage/vendor/cache/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.bundle
+
+current directory: /Users/kenny/dev/personalpage/vendor/cache/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20200902-29181-1ma42kn
