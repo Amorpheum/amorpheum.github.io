@@ -56,14 +56,14 @@ redirect_from:
   
 
 ## Service and leadership
-## Programme Committee
+### Programme Committee
 - CSCW 2020-2021
 
-## Organising Committee
+### Organising Committee
 - MobiCom 2019
 - UbiComp 2018
 
-## Reviewing
+### Reviewing
 - CSCW 2020-2021
 - CHI 2019
 - IMWUT/UbiComp 2018-2019
