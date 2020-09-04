@@ -8,20 +8,17 @@ redirect_from:
 ---
 
 ## Education
-* PhD in Information Systems, Singapore Management University, 2018
-* MSc in Vision, Imaging and Virtual Environments, University College London, 2006
-* BEng in Electrical Engineering, National University of Singapore, 2005
+- PhD in Information Systems, Singapore Management University, 2018
+- MSc in Vision, Imaging and Virtual Environments, University College London, 2006
+- BEng in Electrical Engineering, National University of Singapore, 2005
 
 ## Work experience
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+- 2019 - present: Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
+- 2019          : Research Fellow, School of Information Systems, Singapore Management University
+- 2017          : Graduate Instructor, School of Information Systems, Singapore Management University
+- 2014-2015     : Teaching Assistant, School of Information Systems, Singapore Management University
+- 2007 - 2012   : Senior Member of Technical Staff, Cognition and Human Factors Laboratory, DSO National Laboratories
+- 2004          : Research Assistant, Media Processing Laboratory, Institute for Infocomm Reearch A\*STAR
   
 <!--## Skills-->
 
