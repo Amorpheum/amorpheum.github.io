@@ -13,7 +13,7 @@ redirect_from:
 - BEng in Electrical Engineering, National University of Singapore, 2005
 
 ## Work experience
-- 2019 - present: Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
+- 2019 - *present*: Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
 - 2019          : Research Fellow, School of Information Systems, Singapore Management University
 - 2017          : Graduate Instructor, School of Information Systems, Singapore Management University
 - 2014-2015     : Teaching Assistant, School of Information Systems, Singapore Management University
