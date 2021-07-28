@@ -5,6 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
+1. Lee, R.K.-W., Zhu, J., Ran, J., Li, Z. and Choo, K.T.W. 2021. AutoChart: A Dataset for Chart-to-Text Generation Task. To appear in Proceedings of RANLP (2021).
 1. Lee, N.T.S., Kurniawan, O. and **Choo, K.T.W.** 2021. Assessing Programming Skills and Knowledge During the COVID-19 Pandemic: An Experience Report. ITiCSE (2021).
 1. Tekler, Z.D., Low, R., **Choo, K.T.W.** and Blessing, L. 2021. User Perceptions and Adoption of Plug Load Management Systems in the Workplace. Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 2021).
 1. Tharatipyakul, A., **Choo, K.T.W.** and Perrault, Simon T. 2020. [Pose Estimation for Facilitating Movement Learning from Online Videos](https://arxiv.org/pdf/2004.03209). AVI’20. ([video](https://www.youtube.com/watch?v=hLKF-EJuH4g))
