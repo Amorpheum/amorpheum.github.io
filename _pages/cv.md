@@ -54,7 +54,7 @@ redirect_from:
 
 ## Service and leadership
 ### Programme Committee
-- CSCW 2020-2021
+- CSCW 2020-2022
 
 ### Organising Committee
 - MobiCom 2019
