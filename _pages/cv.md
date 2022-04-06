@@ -8,9 +8,9 @@ redirect_from:
 ---
 
 ## Education
-- PhD in Information Systems, Singapore Management University, 2018
-- MSc in Vision, Imaging and Virtual Environments, University College London, 2006
-- BEng in Electrical Engineering, National University of Singapore, 2005
+- PhD in Information Systems, Singapore Management University
+- MSc in Vision, Imaging and Virtual Environments, University College London
+- BEng in Electrical Engineering, National University of Singapore
 
 ## Work experience
 - 2019 - *present*: Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
@@ -23,6 +23,10 @@ redirect_from:
 <!--## Skills-->
 
 ## Publications
+1. Zhu, J., Ran, J., Lee, R.K.-W., Choo, K.T.W. and Li, Z. 2021. [AutoChart: A Dataset for Chart-to-Text Generation Task](https://arxiv.org/abs/2108.06897). Proceedings of RANLP (2021). ([dataset](https://paperswithcode.com/dataset/autochart))
+1. Nurhadi, A., Perrault, S. and Choo, K.T.W. 2021. Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults. CSCW 2021 Workshop on Conversational User Interfaces (Oct. 2021).
+1. Tekler, Z.D., Low, R., Choo, K.T.W. and Blessing, L. 2021. [User Perceptions and Adoption of Plug Load Management Systems in the Workplace](https://doi.org/10.1145/3411763.3451726). Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems (2021).
+1. Lee, N.T.S., Kurniawan, O. and **Choo, K.T.W.** 2021. [Assessing Programming Skills and Knowledge During the COVID-19 Pandemic: An Experience Report](https://doi.org/10.1145/3430665.3456323). (2021).
 1. Tharatipyakul, A., **Choo, K.T.W.** and Perrault, Simon T. 2020. [Pose Estimation for Facilitating Movement Learning from Online Videos](https://arxiv.org/pdf/2004.03209){:target="_blank"}. AVI’20. ([video](https://www.youtube.com/watch?v=hLKF-EJuH4g){:target="_blank"})
 1. **Choo, K.T.W.**, Balan, R.K. and Lee, Y. 2019. [Examining augmented virtuality impairment simulation for mobile app accessibility design](https://doi.org/10.1145/3290605.3300605){:target="_blank"}. Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (2019). ([video](https://www.youtube.com/watch?v=oDKQiruCNsg){:target="_blank"})
 1. Mikusz, M., **Choo, K.T.W.**, Balan, R.K., Davies, N. and Lee, Y. 2019. [New Challenges in Display-Saturated Environments](https://doi.org/10.1109/MPRV.2019.2906992){:target="_blank"}. IEEE Pervasive Computing. (2019).
