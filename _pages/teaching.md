@@ -50,6 +50,7 @@ Read it [here](/teaching/teaching-statement/).
 
 ### Senior Lecturer, Singapore University of Technology and Design
 - [60.005 HCI and AI](/teaching/hciandai) (Course Designer and Lead, 2022-present)
+- [50.052 Extended Reality](/teaching/xr) (Course Co-Designer and Co-Lead, 2023-present)
 - [50.006 User Interface Design and Implementation](/teaching/userinterfacedesign/) (2021-present)
 - [1.400-1.401 Capstone](/teaching/capstone) (2021-present)
 - [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020-present).
