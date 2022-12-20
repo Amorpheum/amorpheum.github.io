@@ -17,9 +17,8 @@ redirect_from:
 - Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
 - Ivan Chan Wei Jian, SUTD (Undergraduate)
 
-### Graduated Students
+### Former Graduate Students
 - Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
-- Naomi Kong-Vega, SUTD (BEng, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
 - Katherine Fennedy, SUTD (PhD, co-advised with Simon Perrault, graduated 2021)
 - Ahmad Nurhadi Rahim, SUTD (Masters, co-advised with Simon Perrault, graduated 2021)
@@ -29,6 +28,7 @@ redirect_from:
 <!-- ### Postdocs -->
 
 ### Undergrad Research Students
+- Naomi Kong-Vega, SUTD (BEng, graduated 2022)
 - Adelle Chan Min Hui, SUTD (2021-2022)
 - Constance Chua Jie Ning, SUTD (2021-2022)
 - Ragul Balaji, SUTD (2020)
