@@ -18,6 +18,7 @@ redirect_from:
 - Ivan Chan Wei Jian, SUTD (Undergraduate)
 
 ### Graduated Students
+- Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
 - Naomi Kong-Vega, SUTD (BEng, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
 - Katherine Fennedy, SUTD (PhD, co-advised with Simon Perrault, graduated 2021)
