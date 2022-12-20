@@ -27,7 +27,7 @@ redirect_from:
 
 <!-- ### Postdocs -->
 
-### Research Experience for Undergrads
+### Undergrad Research Students
 - Adelle Chan Min Hui, SUTD (2021-2022)
 - Constance Chua Jie Ning, SUTD (2021-2022)
 - Ragul Balaji, SUTD (2020)
