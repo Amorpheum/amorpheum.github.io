@@ -11,11 +11,14 @@ redirect_from:
 
 ### Current Students
 - Gao Jie, SUTD (PhD, co-advised with Simon Perrault)
+- Kohleen Tijing Fortuno (Masters)
 - Kellie Sim Yu Hui, SUTD (Undergraduate)
-- Adelle Chan Min Hui, SUTD (Undergraduate)
-- Constance Chua Jie Ning, SUTD (Undergraduate)
+- Chia Chun Mun, SUTD (Undergraduate)
+- Ivan Chan Wei Jian, SUTD (Undergraduate)
+- Caitlin Daphene Tan Chiang, SUTD (Undergraduate)
 
 ### Graduated Students
+- Naomi Kong-Vega, SUTD (BEng, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
 - Katherine Fennedy, SUTD (PhD, co-advised with Simon Perrault, graduated 2021)
 - Ahmad Nurhadi Rahim, SUTD (Masters, co-advised with Simon Perrault, graduated 2021)
@@ -25,6 +28,8 @@ redirect_from:
 <!-- ### Postdocs -->
 
 ### Research Experience for Undergrads
+- Adelle Chan Min Hui, SUTD (2021-2022)
+- Constance Chua Jie Ning, SUTD (2021-2022)
 - Ragul Balaji, SUTD (2020)
 - Kenneth Choon, SUTD (2020)
 - James Tiovalen, SUTD (2020)
@@ -44,11 +49,12 @@ Read it [here](/teaching/teaching-statement/).
 ## Teaching Experience
 
 ### Senior Lecturer, Singapore University of Technology and Design
+- [60.005 HCI and AI](/teaching/hciandai) (Course Designer and Lead, 2022-present)
+- [50.006 User Interface Design and Implementation](/teaching/userinterfacedesign/) (2021-present)
 - [1.400-1.401 Capstone](/teaching/capstone) (2021-present)
 - [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020-present).
+- [10.020 Data-Driven World](/teaching/ddw/) (2020-present).
 - [50.002 Computation Structures](/teaching/compstruct/) (2019-present)
-- [50.006 User Interface Design and Implementation](/teaching/userinterfacedesign/) (2021-present)
-- [60.005 HCI and AI](/teaching/hciandai) (2022-present)
 - [10.009 Digital World](/teaching/digitalworld/) - An Introduction to Computational Thinking (2020).
 
 ### Lecturer, Singapore Management University
