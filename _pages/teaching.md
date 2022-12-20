@@ -14,8 +14,8 @@ redirect_from:
 - Kohleen Tijing Fortuno (Masters)
 - Kellie Sim Yu Hui, SUTD (Undergraduate)
 - Chia Chun Mun, SUTD (Undergraduate)
+- Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
 - Ivan Chan Wei Jian, SUTD (Undergraduate)
-- Caitlin Daphene Tan Chiang, SUTD (Undergraduate)
 
 ### Graduated Students
 - Naomi Kong-Vega, SUTD (BEng, graduated 2022)
