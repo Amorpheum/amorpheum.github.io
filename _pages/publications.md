@@ -4,7 +4,7 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
-1. Awal, R., Lee, R.K.-W. and **Choo, K.T.W.** 2022. MUSCAT: Multilingual Rumor Verification in Social Media Conversations. (2022). IEEE BigData.
+1. Awal, R., Lee, R.K.-W. and **Choo, K.T.W.** 2022. [MUSCAT: Multilingual Rumor Verification in Social Media Conversations](https://doi.org/10.1109/BigData55660.2022.10021113). (2022). IEEE BigData.
 1. Nurhadi, A., Perrault, S. and **Choo, K.T.W.** 2021. Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults. CSCW 2021 Workshop on Conversational User Interfaces (Oct. 2021).
 1. Zhu, J., Ran, J., Lee, R.K.-W., **Choo, K.T.W.** and Li, Z. 2021. [AutoChart: A Dataset for Chart-to-Text Generation Task](https://arxiv.org/abs/2108.06897). To appear in Proceedings of RANLP (2021).
 1. Lee, N.T.S., Kurniawan, O. and **Choo, K.T.W.** 2021. [Assessing Programming Skills and Knowledge During the COVID-19 Pandemic: An Experience Report](https://dl.acm.org/doi/10.1145/3430665.3456323). ITiCSE (2021).
