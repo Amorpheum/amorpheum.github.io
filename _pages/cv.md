@@ -23,6 +23,7 @@ redirect_from:
 <!--## Skills-->
 
 ## Publications
+1. 4.	Awal, R., Lee, R.K.-W. and Choo, K.T.W. 2022. [MUSCAT: Multilingual Rumor Verification in Social Media Conversations](https://doi.org/10.1109/BigData55660.2022.10021113). (2022). IEEE BigData.
 1. Zhu, J., Ran, J., Lee, R.K.-W., Choo, K.T.W. and Li, Z. 2021. [AutoChart: A Dataset for Chart-to-Text Generation Task](https://arxiv.org/abs/2108.06897). Proceedings of RANLP (2021). ([dataset](https://paperswithcode.com/dataset/autochart))
 1. Nurhadi, A., Perrault, S. and Choo, K.T.W. 2021. Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults. CSCW 2021 Workshop on Conversational User Interfaces (Oct. 2021).
 1. Tekler, Z.D., Low, R., Choo, K.T.W. and Blessing, L. 2021. [User Perceptions and Adoption of Plug Load Management Systems in the Workplace](https://doi.org/10.1145/3411763.3451726). Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems (2021).
@@ -56,19 +57,8 @@ redirect_from:
 - [IS416 Mobile and Pervasive Technology and Applications](/teaching/mobilepervasivetech/) (1 terms, 2015)
   
 
-## Service and leadership
-### Programme Committee
-- CSCW 2020-2022
+## Professional Service and Leadership
+**Associate Chair**: CSCW 2020-2022, CHI Late-Breaking Work (2021-2022)
+**Organising Committee**: MobiCom 2019, UbiComp 2018
+**Reviewer**: CSCW 2019-2022, CHI 2019-2020, IMWUT/UbiComp 2018-2020, MobiSys 2018, Pervasive and Mobile Computing 2018, HAI 2018, MobileHCI 2016
 
-### Organising Committee
-- MobiCom 2019
-- UbiComp 2018
-
-### Reviewing
-- CSCW 2020-2021
-- CHI 2019
-- IMWUT/UbiComp 2018-2019
-- MobiSys 2018
-- Pervasive and Mobile Computing 2018
-- HAI 2018
-- MobileHCI 2016
