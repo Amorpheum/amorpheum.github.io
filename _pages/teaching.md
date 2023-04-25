@@ -10,6 +10,7 @@ redirect_from:
 ## Academic Advising
 
 ### Current Students
+- Gionnieve Lim, SUTD (PhD, co-advised with Simon Perrault)
 - Gao Jie, SUTD (PhD, co-advised with Simon Perrault)
 - Kohleen Tijing Fortuno (Masters)
 - Kellie Sim Yu Hui, SUTD (Undergraduate)
