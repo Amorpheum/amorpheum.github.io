@@ -13,7 +13,8 @@ redirect_from:
 - BEng in Electrical Engineering, National University of Singapore
 
 ## Work experience
-- 2019 - *present*: Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
+- *present*     : Assistant Professor, Design and Artificial Intelligence / Information Systems Technology and Design, Singapore University of Technology and Design
+- 2019-2023     : Senior Lecturer, Information Systems Technology and Design / Design and Artificial Intelligence, Singapore University of Technology and Design
 - 2019          : Research Fellow, School of Information Systems, Singapore Management University
 - 2017          : Graduate Instructor, School of Information Systems, Singapore Management University
 - 2014-2015     : Teaching Assistant, School of Information Systems, Singapore Management University
@@ -23,9 +24,11 @@ redirect_from:
 <!--## Skills-->
 
 ## Publications
-1. Awal, R., Lee, R.K.-W. and Choo, K.T.W. 2022. [MUSCAT: Multilingual Rumor Verification in Social Media Conversations](https://doi.org/10.1109/BigData55660.2022.10021113). (2022). IEEE BigData.
-1. Zhu, J., Ran, J., Lee, R.K.-W., Choo, K.T.W. and Li, Z. 2021. [AutoChart: A Dataset for Chart-to-Text Generation Task](https://arxiv.org/abs/2108.06897). Proceedings of RANLP (2021). ([dataset](https://paperswithcode.com/dataset/autochart))
-1. Nurhadi, A., Perrault, S. and Choo, K.T.W. 2021. Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults. CSCW 2021 Workshop on Conversational User Interfaces (Oct. 2021).
+1. Gao, J., **Choo, K.T.W.**, Cao, J., Lee, R.K.-W. and Perrault, S. 2023. CoAIcoder: Examining the Effectiveness of AI-assisted Human-to-Human Collaboration in Qualitative Analysis. ACM Transactions on Computer-Human Interaction. (Aug. 2023). DOI:https://doi.org/10.1145/3617362.
+1. Wang, H., Hee, M., Awal, R., **Choo, K.T.W.** and Lee, R.K.-W. 2023. Evaluating GPT-3 Generated Explanations for Hateful Content Moderation. Proceedings of the International Joint Conference on Artificial Intelligence (2023).
+1. Awal, R., Lee, R.K.-W. and **Choo, K.T.W.** 2022. [MUSCAT: Multilingual Rumor Verification in Social Media Conversations](https://doi.org/10.1109/BigData55660.2022.10021113). (2022). IEEE BigData.
+1. Zhu, J., Ran, J., Lee, R.K.-W., **Choo, K.T.W.** and Li, Z. 2021. [AutoChart: A Dataset for Chart-to-Text Generation Task](https://arxiv.org/abs/2108.06897). Proceedings of RANLP (2021). ([dataset](https://paperswithcode.com/dataset/autochart))
+1. Nurhadi, A., Perrault, S. and **Choo, K.T.W.** 2021. Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults. CSCW 2021 Workshop on Conversational User Interfaces (Oct. 2021).
 1. Tekler, Z.D., Low, R., Choo, K.T.W. and Blessing, L. 2021. [User Perceptions and Adoption of Plug Load Management Systems in the Workplace](https://doi.org/10.1145/3411763.3451726). Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems (2021).
 1. Lee, N.T.S., Kurniawan, O. and **Choo, K.T.W.** 2021. [Assessing Programming Skills and Knowledge During the COVID-19 Pandemic: An Experience Report](https://doi.org/10.1145/3430665.3456323). (2021).
 1. Tharatipyakul, A., **Choo, K.T.W.** and Perrault, Simon T. 2020. [Pose Estimation for Facilitating Movement Learning from Online Videos](https://arxiv.org/pdf/2004.03209){:target="_blank"}. AVI’20. ([video](https://www.youtube.com/watch?v=hLKF-EJuH4g){:target="_blank"})
@@ -44,10 +47,12 @@ redirect_from:
   
   
 ## Teaching
-### Senior Lecturer, Singapore University of Technology and Design
-- [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020).
+### Assistant Professor, Singapore University of Technology and Design
+- [60.005 Human-Computer Interaction and AI]() (2022-present).
+- [01.400-401 Capstone]() (2021-present)
+- [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020-2022, 2024).
+- [50.002 Computation Structures](/teaching/compstruct/) (2019-2023)
 - [10.009 Digital World](/teaching/digitalworld/) - An Introduction to Computational Thinking (2020).
-- [50.002 Computation Structures](/teaching/compstruct/) (2019-2020)
 
 ### Lecturer, Singapore Management University
 - [IS113 Web Application Development](/teaching/webappdev/) (Guest lecture, 2019). Front end styling and interaction, hybrid app development.
@@ -55,7 +60,12 @@ redirect_from:
 ### Graduate Instructor / Teaching Assistant, Singapore Management University
 - [IS306 Interaction Design and Prototyping](/teaching/interactiondesign/) (3 terms, 2014-2017)
 - [IS416 Mobile and Pervasive Technology and Applications](/teaching/mobilepervasivetech/) (1 terms, 2015)
-  
+
+## Service
+- SUTD Institutional Review Board Member (2023-present)
+- SUTD Capstone Committee (2023-present)
+- SUTD Advisory Committee for Library and Information Services, (2023-present)
+- SUTD Cohort Advisor (2023-present)
 
 ## Professional Service and Leadership
 **Associate Chair**: CSCW 2020-2022, CHI Late-Breaking Work (2021-2022)
