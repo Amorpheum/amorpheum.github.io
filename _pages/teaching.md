@@ -8,9 +8,7 @@ redirect_from:
 ---
 
 ## Academic Advising
-
 ### Current Students
-
 #### Graduate Students
 - Kellie Sim Yu Hui, SUTD (PhD, A*STAR ACIS Scholar)
 - Shi Weiyan , SUTD (PhD, SUTD President's Graduate Fellowship Scholar)
@@ -42,7 +40,8 @@ redirect_from:
 - Sengdalavong (Owen) Palinya, SUTD (Undergraduate)
 - Le Viet Hai, SUTD (Undergraduate)
 
-### Former Graduate Students
+### Former Students
+#### Graduate Students
 - Gao Jie, SUTD (PhD, co-advised with Simon Perrault, graduated 2023)
 - Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
@@ -53,7 +52,7 @@ redirect_from:
 
 <!-- ### Postdocs -->
 
-### Former Undergrad Students
+#### Undergrad Students
 - Chia Chun Mun, SUTD (Undergraduate)
 - Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
 - Naomi Kong-Vega, SUTD (BEng, graduated 2022)
