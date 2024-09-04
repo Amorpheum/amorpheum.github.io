@@ -8,8 +8,7 @@ redirect_from:
 ---
 
 ## Academic Advising
-### Current Students
-#### Graduate Students
+### Current Graduate Students
 - Kellie Sim Yu Hui, SUTD (PhD, A*STAR ACIS Scholar)
 - Shi Weiyan , SUTD (PhD, SUTD President's Graduate Fellowship Scholar)
 - Bryan Tan Zhengyu, SUTD (PhD, A*STAR ACIS Scholar, co-advised with Roy Lee)
@@ -19,7 +18,7 @@ redirect_from:
 - Kailin Chen (Undergraduate/Masters)
 - Ryan Wang Jun Long, SUTD (Undergraduate/Masters, AISD AMP Scholar)
 
-#### Undergraduate Students
+### Current Undergraduate Students
 - Yang Si Jun, SUTD (Undergraduate)
 - Ivan Chan Wei Jian, SUTD (Undergraduate)
 - Pankti Amish Shah, SUTD (Undergraduate)
@@ -40,8 +39,7 @@ redirect_from:
 - Sengdalavong (Owen) Palinya, SUTD (Undergraduate)
 - Le Viet Hai, SUTD (Undergraduate)
 
-### Former Students
-#### Graduate Students
+### Former Graduate Students
 - Gao Jie, SUTD (PhD, co-advised with Simon Perrault, graduated 2023)
 - Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
@@ -52,7 +50,7 @@ redirect_from:
 
 <!-- ### Postdocs -->
 
-#### Undergrad Students
+### Former Undergrad Students
 - Chia Chun Mun, SUTD (Undergraduate)
 - Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
 - Naomi Kong-Vega, SUTD (BEng, graduated 2022)
