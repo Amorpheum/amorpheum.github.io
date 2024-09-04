@@ -10,15 +10,40 @@ redirect_from:
 ## Academic Advising
 
 ### Current Students
+
+#### Graduate Students
+- Kellie Sim Yu Hui, SUTD (PhD, A*STAR ACIS Scholar)
+- Shi Weiyan , SUTD (PhD, SUTD President's Graduate Fellowship Scholar)
+- Bryan Tan Zhengyu, SUTD (PhD, A*STAR ACIS Scholar, co-advised with Roy Lee)
 - Gionnieve Lim, SUTD (PhD, co-advised with Simon Perrault)
-- Gao Jie, SUTD (PhD, co-advised with Simon Perrault)
 - Kohleen Tijing Fortuno (Masters)
-- Kellie Sim Yu Hui, SUTD (Undergraduate)
-- Chia Chun Mun, SUTD (Undergraduate)
-- Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
+- Charlotte Ng Si Min (Undergraduate/Masters)
+- Kailin Chen (Undergraduate/Masters)
+- Ryan Wang Jun Long, SUTD (Undergraduate/Masters, AISD AMP Scholar)
+
+#### Undergraduate Students
+- Yang Si Jun, SUTD (Undergraduate)
 - Ivan Chan Wei Jian, SUTD (Undergraduate)
+- Pankti Amish Shah, SUTD (Undergraduate)
+- Chew Ming Hui, SUTD (Undergraduate)
+- Edward Tang Zhi Ju, SUTD (Undergraduate)
+- Ng Sue Chi, SUTD (Undergraduate)
+- Andrew Yu Ming Xin, SUTD (Undergraduate)
+- Keith Low Wei Kang, SUTD (Undergraduate)
+- Glenda Koh Yu Fen, SUTD (Undergraduate)
+- Lucas Goh Chen Ray, SUTD (Undergraduate)
+- Ezra Lerh Zi Hui, SUTD (Undergraduate)
+- Zachary Edward Sidhunata, SUTD (Undergraduate)
+- Amith Baddipadige Reddy, SUTD (Undergraduate)
+- Pathomphu (Richy) Kanapornthada, SUTD (Undergraduate)
+- Linda Emilia Shalash, SUTD (Undergraduate)
+- Rittambhra (Rittu) Rani Vijayakumar, SUTD (Undergraduate)
+- Hugo Chen, SUTD (Undergraduate)
+- Sengdalavong (Owen) Palinya, SUTD (Undergraduate)
+- Le Viet Hai, SUTD (Undergraduate)
 
 ### Former Graduate Students
+- Gao Jie, SUTD (PhD, co-advised with Simon Perrault, graduated 2023)
 - Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
 - Zeynep Duygu Tekler, SUTD (PhD, co-advised with Lucienne Blessing, graduated 2021)
 - Katherine Fennedy, SUTD (PhD, co-advised with Simon Perrault, graduated 2021)
@@ -28,14 +53,16 @@ redirect_from:
 
 <!-- ### Postdocs -->
 
-### Undergrad Research Students
+### Former Undergrad Students
+- Chia Chun Mun, SUTD (Undergraduate)
+- Caitlin Daphne Tan Chiang, SUTD (Undergraduate)
 - Naomi Kong-Vega, SUTD (BEng, graduated 2022)
 - Adelle Chan Min Hui, SUTD (2021-2022)
 - Constance Chua Jie Ning, SUTD (2021-2022)
 - Ragul Balaji, SUTD (2020)
 - Kenneth Choon, SUTD (2020)
 - James Tiovalen, SUTD (2020)
-- Insaf Ismath, University of Moratuwa, currently pursuing his graduate studies at University of Oulu (2017)
+- Insaf Ismath, University of Moratuwa (2017)
 - Shiven Mian, IIIT-Delhi (2017)
 - Dumindu Tissera, University of Moratuwa (2016)
 
@@ -50,9 +77,9 @@ Read it [here](/teaching/teaching-statement/).
 
 ## Teaching Experience
 
-### Senior Lecturer, Singapore University of Technology and Design
+### Assistant Professor, Singapore University of Technology and Design
 - [60.005 HCI and AI](/teaching/hciandai) (Course Designer and Lead, 2022-present)
-- [50.052 Extended Reality](/teaching/xr) (Course Co-Designer and Co-Lead, 2023-present)
+- [50.052 Extended Reality](/teaching/xr) (Course Co-Designer and Co-Lead, 2023)
 - [50.006 User Interface Design and Implementation](/teaching/userinterfacedesign/) (2021-present)
 - [1.400-1.401 Capstone](/teaching/capstone) (2021-present)
 - [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020-present).
