@@ -4,6 +4,11 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
+1. Sim, K.Y.H., Fortuno, K. and **Choo, K.T.W.** 2024. [Towards Understanding Emotions for Engaged Mental Health Conversations](https://doi.org/10.1145/3656156.3663694). Companion Publication of the 2024 ACM Designing Interactive Systems Conference (2024).
+1. Tran, T., **Choo, K.T.W.**, Foong, S., Bhardwaj, H., Win, S.K.H., Ang, W.J., Goh, K. and Balan, R.K. 2024. [Analyzing Swimming Performance Using Drone Captured Aerial Videos](https://dl.acm.org/doi/10.1145/3661810.3663464). Proceedings of the 10th Workshop on Micro Aerial Vehicle Networks, Systems, and Applications (New York, NY, USA, Jun. 2024), 7–12.
+1. Ng, R.C., Prakash, N., Hee, M.S., **Choo, K.T.W.** and Lee, R.K.-W. 2024. [SGHateCheck: Functional Tests for Detecting Hate Speech in Low-Resource Languages of Singapore](http://arxiv.org/abs/2405.01842). WOAH (2024).
+1. Gao, J., Gebreegziabher, S.A., **Choo, K.T.W.**, Li, T.J.-J., Perrault, S.T. and Malone, T.W. 2024. [A Taxonomy for Human-LLM Interaction Modes: An Initial Exploration](https://dl.acm.org/doi/10.1145/3613905.3650786). Extended Abstracts of the 2024 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, May 2024), 1–11.
+1. Hee, M.S., Singh, K., Si Min, C.N., **Choo, K.T.W.** and Lee, R.K.-W. 2024. [Brinjal: A Web-Plugin for Collaborative Hate Speech Detection](https://dl.acm.org/doi/abs/10.1145/3589335.3651250). Companion Proceedings of the ACM on Web Conference 2024 (New York, NY, USA, May 2024), 1063–1066.
 1. Gao, J., **Choo, K.T.W.**, Cao, J., Lee, R.K.-W. and Perrault, S. 2023. [CoAIcoder: Examining the Effectiveness of AI-assisted Human-to-Human Collaboration in Qualitative Analysis](https://dl.acm.org/doi/10.1145/3617362). ACM TOCHI. (Aug. 2023).
 1. Wang, H., Hee, M., Awal, R., **Choo, K.T.W.** and Lee, R.K.-W. 2023. [Evaluating GPT-3 Generated Explanations for Hateful Content Moderation](https://www.ijcai.org/proceedings/2023/0694.pdf). IJCAI (2023).
 1. Awal, R., Lee, R.K.-W. and **Choo, K.T.W.** 2022. [MUSCAT: Multilingual Rumor Verification in Social Media Conversations](https://doi.org/10.1109/BigData55660.2022.10021113). (2022). IEEE BigData.
