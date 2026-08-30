@@ -18,10 +18,20 @@ gem "github-pages", group: :jekyll_plugins
 
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
+# Ruby 3.4+/4.x removed these from default gems; jekyll 3.9 / github-pages
+# still expect them at runtime. Added for local dev only (not part of the
+# server-side legacy Pages build, which pins its own ruby).
+gem "csv"
+gem "webrick"
+gem "bigdecimal"
+gem "base64"
+gem "logger"
+gem "ostruct"
+gem "fiddle"
+
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   # gem "jekyll-archives"
   gem "jekyll-feed"
   gem 'jekyll-sitemap'
-  gem 'hawkins'
 end

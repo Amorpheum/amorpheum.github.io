@@ -1,0 +1,49 @@
+# Sidecar for _pages/publications.md generation (tools/render_publications.py).
+#
+# publications.bib (personal/cv/) only goes back to 2018. These pre-2018
+# entries were already public on the site and are NOT in the bib, so they
+# are hand-carried here rather than silently dropped on regeneration.
+# If they get added to the CV bib later, delete them from here.
+#
+# `by_key`: extra links (video/dataset/local pdf) keyed by bib entry ID,
+#           merged onto a bib-sourced entry.
+# `extra_entries`: whole entries not present in the bib at all, given as
+#           pre-formatted markdown lines plus a sort year.
+
+by_key:
+  choo_examining_2019:
+    video: https://www.youtube.com/watch?v=oDKQiruCNsg
+  tharatipyakul_pose_2020:
+    video: https://www.youtube.com/watch?v=hLKF-EJuH4g
+
+extra_entries:
+  - year: "2016"
+    line: >-
+      1. **Choo, K.T.W.**, Roy, Q. and Davis, R.C. 2016.
+      [Enabling multi-device interaction on the go in the MAGI project](/files/choo2016.pdf).
+      CHI 2016 Workshop on Interacting with Multi-Device ecologies "in the wild" (2016).
+  - year: "2016"
+    line: >-
+      1. Tran, V.H., **Choo, K.T.W.**, Lee, Y., Davis, R.C. and Misra, A. 2016.
+      [MAGI: Enabling multi-device gestural applications](https://doi.org/10.1109/PERCOMW.2016.7457168).
+      2016 IEEE International Conference on Pervasive Computing and Communication Workshops, PerCom Workshops 2016 (2016).
+  - year: "2014"
+    line: >-
+      1. Davis, R.C. and **Choo, K.T.W.** 2014.
+      [PlaySketch: Turning Animation Sketches Into Game Logic](/files/davis&choo2014.pdf).
+      IUI 2014 Workshop on Sketch: Pen and Touch Recognition (2014).
+  - year: "2010"
+    line: >-
+      1. Tan, A.L.S., Helander, M., **Choo, K.T.W.**, Soh, B.K. 2010.
+      [Cognitive Task Analysus for Maritime Collisions](/files/tan2010.pdf).
+      3rd International Conference on Applied Human Factors and Ergonomics (AHFE '10).
+  - year: "2010"
+    line: >-
+      1. Yu, S., Tan, A. L. S., Chen, A. J., **Choo, K.T.W.**, Soh, B. K. 2010.
+      [Recursive thinking in adversarial decision making: A naturalistic study](/files/soh2010.pdf).
+      (Multidisciplinary Decision Science Symposium 2010)
+  - year: "2005"
+    line: >-
+      1. Pan, F., **Choo, K.T.W.**, Le, T. M. 2005.
+      [Fast Rate-Distortion Optimization in H.264/AVC Video Coding](http://link.springer.com/chapter/10.1007/11553939_62).
+      Knowledge-Based Intelligent Information and Engineering Systems (Vol. 3683, pp. 433-441).

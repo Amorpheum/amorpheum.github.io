@@ -1,2 +1,5 @@
 _site/
-
+CLAUDE.md
+vendor/bundle/
+.jekyll-cache/
+.sass-cache/
