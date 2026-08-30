@@ -3,3 +3,5 @@ CLAUDE.md
 vendor/bundle/
 .jekyll-cache/
 .sass-cache/
+.DS_Store
+.playwright-mcp/
