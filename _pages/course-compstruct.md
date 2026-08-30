@@ -11,3 +11,4 @@ redirect_from:
 
 ## Description
 
+A foundational course covering combinational and sequential digital logic, and how logic circuits are composed into a working general-purpose computer, from gates and finite state machines up through a simple processor and its instruction set.
