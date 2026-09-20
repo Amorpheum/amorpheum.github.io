@@ -11,6 +11,14 @@ Usage:
 BIB_PATH defaults to ~/claude/personal/cv/publications.bib. Extras that
 don't live in the bib (video/dataset links, local PDF fallbacks for old
 papers with no DOI) come from _data/pub_extras.yml, keyed by bib entry key.
+
+CONFIDENTIALITY: this page is public. Any entry keyworded `inreview`, or
+whose `note` field mentions "under review", is dropped before rendering --
+see is_confidential() below. That is a deliberate, load-bearing filter, not
+an incidental one: personal/cv/publications.bib may legitimately carry
+confidential manuscripts for the private cv_academic/cv_grant variants, and
+this script must never surface them here. Do not remove or weaken the
+filter without re-checking every current `inreview`/preprint entry by hand.
 """
 
 import re
@@ -41,9 +49,13 @@ author_profile: true
 
 <!-- GENERATED FILE. Do not hand-edit.
      Source: personal/cv/publications.bib (+ _data/pub_extras.yml)
-     Regenerate: uv run --with bibtexparser tools/render_publications.py -->
+     Regenerate: uv run --with bibtexparser tools/render_publications.py
+     Confidential work under review (keyword `inreview`, or any entry whose
+     note mentions "under review") is excluded from this public page by design. -->
 
 """
+
+UNDER_REVIEW_RE = re.compile(r"under review", re.IGNORECASE)
 
 
 def strip_latex(s: str) -> str:
@@ -112,6 +124,22 @@ def format_note(entry: dict) -> str:
     return strip_latex(raw), is_highlight
 
 
+def is_confidential(entry: dict) -> bool:
+    """True if this entry must never reach the public site.
+
+    Two independent checks, either one is sufficient: the bib's own
+    `inreview` keyword, and a substring match on the note field. The note
+    check is a backstop in case an entry is ever mis-keyworded -- an
+    `inreview` entry's note should always say "under review" anyway.
+    """
+    keywords = entry.get("keywords", "")
+    if any(k.strip().lower() == "inreview" for k in keywords.split(",")):
+        return True
+    if UNDER_REVIEW_RE.search(entry.get("note", "")):
+        return True
+    return False
+
+
 def load_extras() -> dict:
     if not EXTRAS_PATH.exists():
         return {}
@@ -161,7 +189,11 @@ def main():
     extras = load_extras()
 
     rendered = []
+    skipped_confidential = 0
     for entry in db.entries:
+        if is_confidential(entry):
+            skipped_confidential += 1
+            continue
         line, sort_key = render_entry(entry, extras)
         rendered.append((sort_key, line))
 
@@ -174,7 +206,8 @@ def main():
 
     body = "\n".join(line for _, line in rendered) + "\n"
     OUTPUT_PATH.write_text(HEADER + body)
-    print(f"Wrote {len(rendered)} entries to {OUTPUT_PATH}")
+    print(f"Wrote {len(rendered)} entries to {OUTPUT_PATH}"
+          f" ({skipped_confidential} confidential entries excluded)")
 
 
 if __name__ == "__main__":

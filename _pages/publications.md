@@ -7,7 +7,9 @@ author_profile: true
 
 <!-- GENERATED FILE. Do not hand-edit.
      Source: personal/cv/publications.bib (+ _data/pub_extras.yml)
-     Regenerate: uv run --with bibtexparser tools/render_publications.py -->
+     Regenerate: uv run --with bibtexparser tools/render_publications.py
+     Confidential work under review (keyword `inreview`, or any entry whose
+     note mentions "under review") is excluded from this public page by design. -->
 
 1. Sim, K.Y.H., Foong, P.S., Zhao, C., Quek, M.Y.N., Mehta, S.S. and **Choo, K.T.W.** 2026. [Words to Describe What I’m Feeling: Exploring the Potential of AI Agents for High Subjectivity Decisions in Advance Care Planning](https://doi.org/10.1145/3772318.3791335). Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 2026), 1–34 **Honourable Mention Award – top 5% of submissions**.
 1. Shi, W. and **Choo, K.T.W.** 2026. [Towards Aligning Multimodal LLMs with Human Experts: A Focus on Parent–Child Interaction](https://doi.org/10.1145/3772318.3791267). Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 2026), 1–17 **Honourable Mention Award – top 5% of submissions**.
@@ -22,8 +24,7 @@ author_profile: true
 1. Teng, S.S.N. and **Choo, K.T.W.** 2026. [Foreign Domestic Workers' Perspectives on an LLM-Based Emotional Support Tool for Caregiving Burden](https://doi.org/10.1145/3772363.3798761). Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 2026), 1–5.
 1. Shi, W. and **Choo, K.T.W.** 2026. [A Taxonomy of Human–MLLM Interaction in Early-Stage Sketch-Based Design Ideation](https://doi.org/10.1145/3772363.3798524). Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 2026), 1–5.
 1. Shi, W. and **Choo, K.T.W.** 2026. [More Than 1v1: Human-AI Alignment in Early Developmental Communities with Multimodal LLMs](https://doi.org/10.48550/arXiv.2603.07134). (2026) (CHI '26 Workshop on Human-AI Interaction Alignment).
-[REDACTED 2026-09-20: confidential manuscript, entry removed]
-[REDACTED 2026-09-20: confidential manuscript, entry removed]
+1. Sim, K.Y.H. and **Choo, K.T.W.** 2026. [Redistributing Voice and Responsibility: AI in Relationship-Centred Care](https://doi.org/10.48550/arXiv.2606.00028). (2026) (arXiv:2606.00028 [cs]; provocation, CHI 2026 Workshop on Toward Relationship-Centered Care with AI).
 1. Ryan, Y., Tan, R.Y., **Choo, K.T.W.** and Lee, R.K. 2025. [Humor in Pixels: Benchmarking Large Multimodal Models Understanding of Online Comics](https://doi.org/10.18653/v1/2025.findings-emnlp.755). Findings of the Association for Computational Linguistics: EMNLP 2025 (Suzhou, China, 2025), 14024–14050.
 1. Tang, H., Gao, F., **Choo, K.T.W.**, Bickel, B. and Song, P. 2025. [Easy Modeling of Man-Made Shapes in Virtual Reality](https://doi.org/10.2312/pg.20251299). Pacific Graphics Conference Papers, Posters, and Demos (Oct. 2025).
 1. Noller, Y., Chandra, E., Chandrashekar, S., **Choo, K.T.W.**, Jegourel, C., Kurniawan, O. and Poskitt, C.M. 2025. [Simulated Interactive Debugging](https://doi.org/10.1109/ASE63991.2025.00338). 2025 40th IEEE/ACM International Conference on Automated Software Engineering (ASE) (2025), 3896–3901 (ISSN: 2643-1572).
