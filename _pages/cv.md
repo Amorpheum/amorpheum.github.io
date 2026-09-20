@@ -24,6 +24,11 @@ redirect_from:
 <!--## Skills-->
 
 ## Grants & Funding
+<!-- Hand-maintained, no generator, no confidentiality filter (unlike
+     publications.md). List only awarded/announced grants — never copy this
+     straight from personal/cv/_cv_content.tex, which can carry a pending,
+     confidential grant gated by \ifshowgrantspending. See
+     work/personal_page/CLAUDE.md and personal/cv/CLAUDE.md. -->
 - **PI**, Ministry of Education AcRF Tier 1 Grant — SGD 400,000 (2024-2027). *TalkSketch: enhancing concept generation through sketching supported by large multimodal models.*
 - **PI**, Ministry of Education AcRF Tier 1 Grant — SGD 428,158 (2023-2026). *Enhancing mental health support through context-aware text communication systems.*
 - **Co-PI**, SMU-SUTD Joint Research Grant — SGD 369,600 (2023-2025). Transforming competitive swimming with physiological & smart drone-based sensing, analysis and coaching insights.
