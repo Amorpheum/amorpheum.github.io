@@ -1,7 +1,8 @@
 404.html
+CNAME
 about.html
 about/index.html
-CNAME
+collection-archive/index.html
 cv/index.html
 feed.xml
 files/choo2016.pdf
@@ -20,6 +21,7 @@ images/og-image.png
 images/safari-pinned-tab.svg
 images/site-logo.png
 index.html
+page-archive/index.html
 publications/index.html
 resume.html
 robots.txt

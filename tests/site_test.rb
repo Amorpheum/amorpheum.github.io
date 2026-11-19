@@ -1,4 +1,5 @@
 require "minitest/autorun"
+require "cgi"
 require "fileutils"
 require "open3"
 require "tmpdir"
@@ -13,8 +14,7 @@ BUILD = begin
   # after_run, not at_exit: autorun's own at_exit would otherwise fire second.
   Minitest.after_run { FileUtils.remove_entry(dest) }
   out, status = Open3.capture2e(
-    "bundle", "exec", "jekyll", "build", "--strict_front_matter",
-    "--config", "_config.yml,_config.dev.yml", "--destination", dest,
+    "bundle", "exec", "jekyll", "build", "--strict_front_matter", "--destination", dest,
     chdir: ROOT
   )
   abort "jekyll build failed:\n#{out}" unless status.success?
@@ -201,7 +201,7 @@ class PagesTest < Minitest::Test
 
   def test_internal_links_resolve
     PAGES.each do |page|
-      html_of(page).scan(/href="([^"]+)"/).flatten.each do |href|
+      html_of(page).scan(/href="([^"]+)"/).flatten.map { |h| CGI.unescapeHTML(h) }.each do |href|
         next if href.start_with?("http", "mailto:", "#")
         path = href.split("#").first
         next if path.empty?
