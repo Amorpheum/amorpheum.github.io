@@ -6,7 +6,11 @@
 # If they get added to the CV bib later, delete them from here.
 #
 # `by_key`: extra links (video/dataset/local pdf) keyed by bib entry ID,
-#           merged onto a bib-sourced entry.
+#           merged onto a bib-sourced entry. `date` (YYYY[-MM[-DD]]) orders
+#           the entry when the bib has no month, or a month other than when
+#           the paper became public (earliest public availability, the same
+#           rule as the CAILab site's publications.yml). Its year must equal
+#           the printed year or the generator stops.
 # `extra_entries`: whole entries not present in the bib at all, given as
 #           pre-formatted markdown lines plus a sort year.
 
@@ -15,6 +19,12 @@ by_key:
     video: https://www.youtube.com/watch?v=oDKQiruCNsg
   tharatipyakul_pose_2020:
     video: https://www.youtube.com/watch?v=hLKF-EJuH4g
+  shi_more_2026:
+    date: "2026-03"       # earliest public date per the CAILab list; the bib month is April
+  sim_envisioning_2025:
+    date: "2025-03"       # earliest public date per the CAILab list; the bib month is April
+  sim_redistributing_2026:
+    date: "2026-06"       # the bib entry has no month
 
 extra_entries:
   - year: "2016"
