@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Kenny Choo"
 title_separator          : "-"
 name                     : &name "Kenny Choo"
-description              : &description "Kenny Choo — Assistant Professor at SUTD, directing the Context-Aware Interaction Lab. Research on Society-Centred AI: designing and studying AI systems for sensitive, high-stakes human contexts."
+description              : &description "Kenny Choo — Assistant Professor at SUTD, directing the Context-Aware Interaction Lab. Research on Human-Centred AI: designing and studying AI systems that people can understand, question, and act with, in sensitive, high-stakes settings."
 url                      : https://kennychoo.net # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 enforce_ssl              : kennychoo.net
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -83,7 +83,7 @@ analytics:
 author:
   name             : "Kenny Choo"
   avatar           : "kennychoo.png"
-  bio              : "Human Computer Interaction researcher focusing on context-aware computing and Human-AI interaction"
+  bio              : "HCI researcher working on Human-Centred AI for sensitive, high-stakes settings"
   location         : "Singapore"
   employer         : "SUTD"
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
