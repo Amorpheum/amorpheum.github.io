@@ -1,0 +1,11 @@
+{%- comment -%}
+  talk   a document of the talks collection
+  index  position among the cards shown (picks the dot colour)
+  The title link is stretched over the whole card.
+{%- endcomment -%}
+{%- assign tone = include.index | modulo: 6 | plus: 1 -%}
+<li class="news-item news-item--link">
+  <p class="news-item__date"><span class="dot c{{ tone }}" aria-hidden="true"></span><span>{{ include.talk.date | date: "%-d %b %Y" }}</span></p>
+  <h3 class="news-item__title"><a href="{{ include.talk.url | relative_url }}">{{ include.talk.title }}</a></h3>
+  <p class="news-item__meta">{{ include.talk.type }}{% if include.talk.venue %}, {{ include.talk.venue }}{% endif %}{% if include.talk.location %}, {{ include.talk.location }}{% endif %}</p>
+</li>

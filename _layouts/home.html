@@ -1,0 +1,71 @@
+---
+layout: default
+---
+{%- assign areas = site.data.areas -%}
+<header class="hero-person" id="top">
+  <div class="container hero-person__inner">
+    <div class="hero-person__figure">
+      <svg class="ring" data-ring="Kenny Tsu Wei Choo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"></svg>
+      <img class="hero-person__photo" src="{{ '/images/kennychoo.png' | relative_url }}" width="492" height="674" alt="Portrait of {{ site.author.name }}">
+    </div>
+    <div class="hero-person__text">
+      <h1 class="hero-person__name">{{ site.author.name }}</h1>
+      <p class="hero-person__role">{{ site.author.bio }}</p>
+      <div class="hero-person__lead">{{ content }}</div>
+      <div class="hero-person__actions">
+        <a class="btn btn--primary" href="mailto:{{ site.author.email }}">Email</a>
+        <a class="btn" href="{{ site.author.googlescholar }}">Google Scholar</a>
+        <a class="btn" href="{{ site.author.orcid }}">ORCID</a>
+        <a class="btn" href="https://github.com/{{ site.author.github }}">GitHub</a>
+        <a class="btn" href="https://www.cailab.info">CAILab</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="research">
+  <div class="container">
+    <div class="section-header">
+      <h2>Research areas</h2>
+      <a class="section-header__link" href="https://www.cailab.info/research/">All research at CAILab</a>
+    </div>
+    <ul class="tiles projects">
+      {%- assign bases = "0,2,3" | split: "," -%}
+      {%- for area in areas %}
+      <li class="project-block project-block--text">
+        <svg class="ring project-block__glyph" data-ring="{{ area.title }}" data-base="{{ bases[forloop.index0] }}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"></svg>
+        <h3 class="project-block__title"><a class="project-block__link" href="https://www.cailab.info/research/#{{ area.slug }}">{{ area.title }}</a></h3>
+        <p class="project-block__body">{{ area.body }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="talks">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recent talks</h2>
+      <a class="section-header__link" href="{{ '/talks/' | relative_url }}">All talks</a>
+    </div>
+    <ul class="tiles news news--three">
+      {%- assign recent = site.talks | reverse -%}
+      {%- for talk in recent limit: 3 %}
+      {% include talk-card.html talk=talk index=forloop.index0 %}
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="students">
+  <div class="container">
+    <div class="cta-banner cta-banner--block">
+      <h2 class="cta-banner__title">Work with us</h2>
+      <p class="cta-banner__lead">{{ page.join_text }}</p>
+      <div class="hero-person__actions">
+        <a class="btn btn--primary" href="https://www.cailab.info/join-us/">Join Us</a>
+        <a class="btn" href="mailto:{{ site.author.email }}">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
