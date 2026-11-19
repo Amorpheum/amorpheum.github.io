@@ -6,11 +6,21 @@ _pages/publications.md is GENERATED — do not hand-edit it. To change a
 publication, edit the bib entry and rerun this script.
 
 Usage:
-    uv run --with bibtexparser tools/render_publications.py [BIB_PATH]
+    uv run --with 'bibtexparser<2' --with pyyaml tools/render_publications.py [BIB_PATH]
+
+bibtexparser must stay below 2: this script uses the v1 API (`bibtexparser.load`),
+which v2 removed, so an unpinned `--with bibtexparser` crashes.
 
 BIB_PATH defaults to ~/claude/personal/cv/publications.bib. Extras that
 don't live in the bib (video/dataset links, local PDF fallbacks for old
 papers with no DOI) come from _data/pub_extras.yml, keyed by bib entry key.
+
+ORDER: newest first. An entry's sort date is its printed year, then its bib
+`month` (full names or abbreviations), then the day if `by_key.<key>.date` in
+pub_extras.yml gives one. That sidecar `date` (YYYY, YYYY-MM or YYYY-MM-DD)
+is for entries whose bib has no month, or a month that is not when the paper
+became public; its year must equal the printed year, or the script stops, so
+the list can never look out of order. Equal dates keep bib order.
 
 CONFIDENTIALITY: this page is public. Any entry keyworded `inreview`, or
 whose `note` field mentions "under review", is dropped before rendering --
@@ -49,13 +59,21 @@ author_profile: true
 
 <!-- GENERATED FILE. Do not hand-edit.
      Source: personal/cv/publications.bib (+ _data/pub_extras.yml)
-     Regenerate: uv run --with bibtexparser tools/render_publications.py
+     Regenerate: uv run --with 'bibtexparser<2' --with pyyaml tools/render_publications.py
      Confidential work under review (keyword `inreview`, or any entry whose
      note mentions "under review") is excluded from this public page by design. -->
 
 """
 
 UNDER_REVIEW_RE = re.compile(r"under review", re.IGNORECASE)
+
+MONTH_NUMBERS = {name: i for i, name in enumerate(MONTHS, start=1)}  # keyed by 3-letter prefix
+
+
+def month_number(raw) -> int:
+    """1-12 for a bib month ("feb", "Oct", "September"); 0 when blank or not a month."""
+    prefix = (raw or "").strip().lower()[:3]
+    return MONTH_NUMBERS.get(prefix, 0)
 
 
 def strip_latex(s: str) -> str:
@@ -174,8 +192,48 @@ def render_entry(entry: dict, extras: dict) -> str:
     else:
         note_str = "."
 
-    line = f"1. {authors} {year}. {title_md}. {venue}{note_str}{extra_str}"
-    return line, (year, entry.get("date", "") or year)
+    return f"1. {authors} {year}. {title_md}. {venue}{note_str}{extra_str}"
+
+
+def printed_year(entry: dict) -> int:
+    """The year render_entry prints, as an int (0 when the entry has none, which sorts last)."""
+    text = entry.get("year") or entry.get("date", "")[:4]
+    return int(text) if text.isdigit() else 0
+
+
+def sort_date(entry: dict, extras: dict) -> tuple[int, int, int]:
+    """(year, month, day) used to order the page; see the ORDER note in the module docstring."""
+    year = printed_year(entry)
+    month = month_number(entry.get("month"))
+    day = 0
+    override = str(extras.get("by_key", {}).get(entry.get("ID", ""), {}).get("date", "")).strip()
+    if override:
+        parts = [int(p) for p in override.split("-")]
+        if parts[0] != year:
+            raise ValueError(
+                f"{entry.get('ID')}: pub_extras date {override} is not in the printed year {year}; "
+                "fix the bib year or the date so the list stays in order")
+        month = parts[1] if len(parts) > 1 else 0
+        day = parts[2] if len(parts) > 2 else 0
+    return (year, month, day)
+
+
+def build_body(entries: list[dict], extras: dict) -> tuple[str, int]:
+    """Markdown list of the public entries, newest first, and how many confidential ones were dropped."""
+    rendered = []
+    skipped_confidential = 0
+    for entry in entries:
+        if is_confidential(entry):
+            skipped_confidential += 1
+            continue
+        rendered.append((sort_date(entry, extras), render_entry(entry, extras)))
+
+    for extra in extras.get("extra_entries", []):
+        rendered.append(((int(extra["year"]), 0, 0), extra["line"].strip()))
+
+    # Newest first. reverse=True keeps the original order of equal keys, so ties follow the bib.
+    rendered.sort(key=lambda r: r[0], reverse=True)
+    return "\n".join(line for _, line in rendered) + "\n", skipped_confidential
 
 
 def main():
@@ -186,27 +244,9 @@ def main():
     with open(bib_path) as f:
         db = bibtexparser.load(f)
 
-    extras = load_extras()
-
-    rendered = []
-    skipped_confidential = 0
-    for entry in db.entries:
-        if is_confidential(entry):
-            skipped_confidential += 1
-            continue
-        line, sort_key = render_entry(entry, extras)
-        rendered.append((sort_key, line))
-
-    for extra in extras.get("extra_entries", []):
-        year = str(extra["year"])
-        rendered.append(((year, year), extra["line"].strip()))
-
-    # newest first
-    rendered.sort(key=lambda r: r[0], reverse=True)
-
-    body = "\n".join(line for _, line in rendered) + "\n"
+    body, skipped_confidential = build_body(db.entries, load_extras())
     OUTPUT_PATH.write_text(HEADER + body)
-    print(f"Wrote {len(rendered)} entries to {OUTPUT_PATH}"
+    print(f"Wrote {body.count(chr(10))} entries to {OUTPUT_PATH}"
           f" ({skipped_confidential} confidential entries excluded)")
 
 

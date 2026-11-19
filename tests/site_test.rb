@@ -90,13 +90,32 @@ class ProductionIdentityTest < Minitest::Test
 end
 
 class PublicContentTest < Minitest::Test
+  # The papers are the one <ol> in the page body; the nav and footer have their own <li>s.
+  def publication_items = html_of("/publications/")[%r{<ol>.*?</ol>}m].scan(%r{<li>(.*?)</li>}m).flatten
+
   # tools/render_publications.py drops these; this is the second gate on what the page finally says.
   def test_publications_page_has_no_work_under_review
     refute_match(/under review|under submission|in review/i, text_of("/publications/"))
   end
 
   def test_publications_page_still_lists_the_papers
-    assert_operator html_of("/publications/").scan("<li>").size, :>=, 40, "publication list looks truncated"
+    assert_operator publication_items.size, :>=, 45, "publication list looks truncated"
+  end
+
+  def test_publications_are_newest_first_by_printed_year
+    years = publication_items.map { |li| li[/ (\d{4})\. /, 1].to_i }
+    refute_includes years, 0, "an entry has no year"
+    assert_equal years.sort.reverse, years, "publication years are out of order"
+  end
+
+  # The CAILab list is maintained separately; a paper it shows must not be missing here.
+  def test_every_paper_on_the_lab_site_is_listed
+    lab_file = File.join(LAB, "_data/publications.yml")
+    skip "sibling cailab-website not present" unless File.exist?(lab_file)
+    squash = ->(str) { CGI.unescapeHTML(str.gsub(/<[^>]+>/, " ")).downcase.gsub(/[^a-z0-9]/, "") }
+    page = squash.call(html_of("/publications/"))
+    missing = YAML.safe_load(File.read(lab_file)).map { |p| p["title"] }.reject { |t| page.include?(squash.call(t)) }
+    assert_empty missing, "on the lab site but not on this page"
   end
 end
 
