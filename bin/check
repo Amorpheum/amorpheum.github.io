@@ -1,0 +1,12 @@
+#!/bin/sh
+# The done gate: strict build plus tests. Run from anywhere.
+set -eu
+cd "$(dirname "$0")/.."
+
+want="$(cat .ruby-version)"
+case "$(ruby -v)" in
+  "ruby $want"*) ;;
+  *) echo "need ruby $want, got: $(ruby -v)" >&2; exit 1 ;;
+esac
+
+ruby -Itests -e 'Dir["tests/*_test.rb"].sort.each { |f| require File.expand_path(f) }'
