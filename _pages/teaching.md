@@ -18,7 +18,6 @@ redirect_from:
 - Chong Zheng Goh, SUTD (Masters)
 - Felix Wen Pin Teo, SUTD (Masters)
 - Raphael Xujie Yip, SUTD (Masters)
-- Marcus Wei Ren Lim, SUTD (Masters)
 - Darryl Kay Yuen Lim, SUTD (Masters)
 - Bryan Tan Zhengyu, SUTD (PhD, A*STAR ACIS Scholar, co-advised with Roy Lee)
 - Ryan Wang Jun Long, SUTD (Undergraduate/Masters, AISD AMP Scholar)
