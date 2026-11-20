@@ -35,6 +35,17 @@ end
 
 def text_of(page) = html_of(page).gsub(/<[^>]+>/, " ").gsub(/\s+/, " ")
 
+# The Publications page, as [year, [row html, ...]] in page order: one <section id="YYYY"> per year, one
+# <li class="publication-row"> per paper. (The nav and footer have their own <li>s, so rows are matched by class.)
+def publication_sections
+  html_of("/publications/").scan(%r{<section class="section section--year" id="(\d{4})">(.*?)</section>}m).map do |year, body|
+    [year.to_i, body.scan(%r{<li class="publication-row".*?</li>}m)]
+  end
+end
+
+def publication_rows = publication_sections.flat_map(&:last)
+def row_title(row) = CGI.unescapeHTML(row[%r{<h3 class="publication-row__title">(.*?)</h3>}m, 1].to_s.gsub(/<[^>]+>/, ""))
+
 # Every built HTML page, as a path relative to the build root.
 def built_pages = Dir.glob("**/*.html", base: BUILD).sort
 
@@ -91,22 +102,27 @@ class ProductionIdentityTest < Minitest::Test
 end
 
 class PublicContentTest < Minitest::Test
-  # The papers are the one <ol> in the page body; the nav and footer have their own <li>s.
-  def publication_items = html_of("/publications/")[%r{<ol>.*?</ol>}m].scan(%r{<li>(.*?)</li>}m).flatten
-
   # tools/render_publications.py drops these; this is the second gate on what the page finally says.
   def test_publications_page_has_no_work_under_review
     refute_match(/under review|under submission|in review/i, text_of("/publications/"))
   end
 
   def test_publications_page_still_lists_the_papers
-    assert_operator publication_items.size, :>=, 45, "publication list looks truncated"
+    assert_operator publication_rows.size, :>=, 45, "publication list looks truncated"
   end
 
-  def test_publications_are_newest_first_by_printed_year
-    years = publication_items.map { |li| li[/ (\d{4})\. /, 1].to_i }
-    refute_includes years, 0, "an entry has no year"
-    assert_equal years.sort.reverse, years, "publication years are out of order"
+  def test_every_generated_record_is_on_the_page_once
+    keys = YAML.safe_load(read("_data/publications.yml")).map { |r| r["title"] }
+    assert_equal keys.size, publication_rows.size
+    assert_equal keys.map { |t| t.downcase.gsub(/[^a-z0-9]/, "") }.sort,
+                 publication_rows.map { |r| row_title(r).downcase.gsub(/[^a-z0-9]/, "") }.sort
+  end
+
+  def test_years_are_newest_first_and_each_appears_once
+    years = publication_sections.map(&:first)
+    refute_empty years
+    assert_equal years.uniq.sort.reverse, years, "year sections are out of order or repeated"
+    publication_sections.each { |year, rows| refute_empty rows, "empty section #{year}" }
   end
 
   # The CAILab list is maintained separately; a paper it shows must not be missing here.
@@ -114,7 +130,7 @@ class PublicContentTest < Minitest::Test
     lab_file = File.join(LAB, "_data/publications.yml")
     skip "sibling cailab-website not present" unless File.exist?(lab_file)
     squash = ->(str) { CGI.unescapeHTML(str.gsub(/<[^>]+>/, " ")).downcase.gsub(/[^a-z0-9]/, "") }
-    page = squash.call(html_of("/publications/"))
+    page = squash.call(publication_rows.join)
     missing = YAML.safe_load(File.read(lab_file)).map { |p| p["title"] }.reject { |t| page.include?(squash.call(t)) }
     assert_empty missing, "on the lab site but not on this page"
   end
@@ -122,18 +138,122 @@ end
 
 # The lab list and the CV bib are kept separately; they once disagreed on a paper's year (InfoTrace, Gaze Patterns).
 class PublicationYearsAgreeWithLabTest < Minitest::Test
-  def test_every_paper_prints_the_year_the_lab_site_gives_it
+  def test_every_paper_is_filed_under_the_year_the_lab_site_gives_it
     lab_file = File.join(LAB, "_data/publications.yml")
     skip "sibling cailab-website not present" unless File.exist?(lab_file)
-    squash = ->(str) { CGI.unescapeHTML(str.gsub(/<[^>]+>/, " ")).downcase.gsub(/[^a-z0-9]/, "") }
-    items = html_of("/publications/")[%r{<ol>.*?</ol>}m].scan(%r{<li>(.*?)</li>}m).flatten.map do |li|
-      [squash.call(li[%r{<a [^>]*>(.*?)</a>}m, 1].to_s), li[/ (\d{4})\. /, 1].to_i]
-    end
+    squash = ->(str) { str.downcase.gsub(/[^a-z0-9]/, "") }
+    filed = publication_sections.flat_map { |year, rows| rows.map { |row| [squash.call(row_title(row)), year] } }
     mismatches = YAML.safe_load(File.read(lab_file)).filter_map do |paper|
-      printed = items.find { |title, _| title == squash.call(paper["title"]) }&.last
+      printed = filed.find { |title, _| title == squash.call(paper["title"]) }&.last
       "#{paper["title"]}: lab #{paper["year"]}, here #{printed}" if printed && printed != paper["year"].to_i
     end
     assert_empty mismatches, "year differs between the lab site and the CV bib (fix the bib, then bin/sync-publications)"
+  end
+end
+
+# The year folds, the filter bar and the labels (assets/js/year-folds.js reveals and drives them; the markup must
+# work without it).
+class PublicationsPageTest < Minitest::Test
+  TYPES = YAML.safe_load(read("_data/publication_types.yml")).map { |t| t["id"] }.freeze
+  AREAS = (YAML.safe_load(read("_data/areas.yml")).map { |a| a["slug"] } + ["other"]).freeze
+
+  def test_only_the_newest_year_starts_open
+    html = html_of("/publications/")
+    assert_equal 1, html.scan(%r{<details class="year"[^>]*\bopen\b}).size
+    assert_match(%r{<section class="section section--year" id="#{publication_sections.first.first}">\s*<div class="container">\s*<details class="year" open>}m, html)
+  end
+
+  def test_every_row_has_a_known_type_known_areas_and_search_text
+    publication_rows.each do |row|
+      type = row[/data-type="([^"]+)"/, 1]
+      assert_includes TYPES, type, "type on #{row_title(row)}"
+      areas = row[/data-areas="([^"]+)"/, 1].to_s.split
+      refute_empty areas, "no areas on #{row_title(row)}"
+      assert_empty areas - AREAS, "unknown area on #{row_title(row)}"
+      assert_match(/data-text="[^"]+"/, row, "search text on #{row_title(row)}")
+      assert_has row, %(<span class="pill pill--type">), "type pill on #{row_title(row)}"
+    end
+  end
+
+  def test_area_pills_match_the_rows_areas
+    publication_rows.each do |row|
+      pills = row.scan(/class="pill pill--area a\d" data-area="([^"]+)"/).flatten
+      areas = row[/data-areas="([^"]+)"/, 1].split - ["other"]
+      assert_equal areas, pills, "pills vs data-areas on #{row_title(row)}"
+    end
+  end
+
+  # Without JS the controls would be dead, so they start hidden and year-folds.js reveals them.
+  def test_filter_bar_starts_hidden_and_has_a_chip_for_each_used_type_and_every_area
+    html = html_of("/publications/")
+    assert_match(/<div class="container pub-filters" hidden>/, html)
+    used = publication_rows.map { |r| r[/data-type="([^"]+)"/, 1] }.uniq
+    assert_equal used.sort, html.scan(/data-filter="type" data-value="([^"]+)"/).flatten.sort
+    assert_equal AREAS.sort, html.scan(/data-filter="area" data-value="([^"]+)"/).flatten.sort
+  end
+
+  def test_the_script_is_loaded_here_published_and_not_on_other_pages
+    assert File.exist?(File.join(BUILD, "assets/js/year-folds.js")), "year-folds.js not published"
+    assert_has html_of("/publications/"), 'src="/assets/js/year-folds.js"', "script on /publications/"
+    refute_has html_of("/"), "year-folds.js", "script leaked onto the home page"
+  end
+
+  def test_award_papers_carry_the_medal_and_nothing_else_does
+    medals = publication_rows.select { |r| r.include?("class=\"medal\"") }
+    awards = YAML.safe_load(read("_data/publications.yml")).select { |r| r["award"] }.map { |r| r["title"] }
+    assert_equal awards.sort, medals.map { |r| row_title(r) }.sort
+    refute_empty awards
+  end
+
+  def test_every_row_has_links_and_every_bib_paper_an_anchor_for_deep_links
+    publication_rows.each { |row| assert_has row, 'class="publication-row__links"', "links on #{row_title(row)}" }
+    keyed = YAML.safe_load(read("_data/publications.yml")).map { |r| r["key"] }.reject(&:empty?)
+    anchors = publication_rows.filter_map { |r| r[/<li class="publication-row" id="pub-([^"]+)"/, 1] }.map { |a| CGI.unescapeHTML(a) }
+    assert_equal keyed.sort, anchors.sort, "#pub-<key> anchors (the lab's research cards link to them)"
+  end
+
+  def test_the_hidden_attribute_wins_over_component_display_rules
+    assert_has read("assets/css/site.css"), "[hidden]{display:none!important}", "hidden rule"
+  end
+end
+
+# The lab owns the classification, areas and filter script; these are copies, so a change there is copied here.
+class PublicationsAgreeWithLabTest < Minitest::Test
+  def lab(path) = File.join(LAB, path)
+
+  def test_publication_types_equal_the_labs
+    skip "sibling cailab-website not present" unless File.exist?(lab("_data/publication_types.yml"))
+    assert_equal YAML.safe_load(File.read(lab("_data/publication_types.yml"))), YAML.safe_load(read("_data/publication_types.yml"))
+  end
+
+  def test_area_colours_equal_the_labs
+    skip "sibling cailab-website not present" unless File.exist?(lab("_data/research.yml"))
+    lab_areas = YAML.safe_load(File.read(lab("_data/research.yml")))["areas"]
+    mine = YAML.safe_load(read("_data/areas.yml"))
+    assert_equal lab_areas.map { |a| [a["slug"], a["short"], a["pastel"]] }, mine.map { |a| [a["slug"], a["short"], a["pastel"]] }
+  end
+
+  def test_filter_script_equals_the_labs
+    skip "sibling cailab-website not present" unless File.exist?(lab("assets/js/year-folds.js"))
+    mine = read("assets/js/year-folds.js").sub(/\A(\/\/[^\n]*\n){2}/, "")
+    assert_equal File.read(lab("assets/js/year-folds.js")), mine
+  end
+
+  # pub_extras.yml `areas` is a copy of research.yml's papers/more lists, matched by title.
+  def test_paper_areas_equal_the_labs_by_title
+    skip "sibling cailab-website not present" unless File.exist?(lab("_data/research.yml"))
+    squash = ->(str) { str.downcase.gsub(/[^a-z0-9]/, "") }
+    research = YAML.safe_load(File.read(lab("_data/research.yml")))["areas"]
+    lab_pubs = YAML.safe_load(File.read(lab("_data/publications.yml"))).to_h { |p| [p["id"], squash.call(p["title"])] }
+    expected = Hash.new { |h, k| h[k] = [] }
+    research.each { |a| (a["papers"] + a["more"]).uniq.each { |id| expected[lab_pubs.fetch(id)] << a["slug"] } }
+    mine = YAML.safe_load(read("_data/publications.yml")).to_h { |r| [squash.call(r["title"]), r["areas"] - ["other"]] }
+    wrong = expected.filter_map do |title, slugs|
+      "#{title[0, 40]}: lab #{slugs}, here #{mine[title].inspect}" if mine.key?(title) && mine[title].sort != slugs.sort
+    end
+    assert_empty wrong, "research areas differ from the lab site"
+    extra = mine.reject { |t, a| a.empty? || expected.key?(t) }.keys
+    assert_empty extra, "a paper has areas here that the lab does not give it"
   end
 end
 
@@ -327,7 +447,7 @@ class SelectedPublicationsTest < Minitest::Test
   end
 
   def test_every_selected_paper_is_also_on_the_publications_page
-    page = squash(html_of("/publications/"))
+    page = squash(publication_rows.join)
     selected.each { |s| assert page.include?(squash(s["citation"][/\[(.*?)\]\(/m, 1])), "not on publications page: #{s["key"]}" }
   end
 

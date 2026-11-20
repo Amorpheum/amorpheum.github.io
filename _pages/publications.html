@@ -1,0 +1,71 @@
+---
+layout: default
+title: "Publications"
+permalink: /publications/
+---
+{%- comment -%}
+  The papers are _data/publications.yml, generated from the CV's publications.bib by tools/render_publications.py
+  (bin/sync-publications); this page only lays them out. Confidential work under review never reaches that data.
+  Same structure as the lab site's /publications/: a fold per year (newest open), a filter bar by type, research
+  area and text, all driven by assets/js/year-folds.js. Without JavaScript the filter bar stays hidden and every
+  year is a fold you open by hand.
+{%- endcomment -%}
+{% include page-header.html title="Publications" %}
+
+{% assign years = site.data.publications | group_by: "year" | sort: "name" | reverse %}
+<div class="container pub-filters" hidden>
+  <div class="pub-filters__row">
+    <div class="pub-filters__search">
+      <label class="visually-hidden" for="pub-search">Search publications</label>
+      <input type="search" id="pub-search" placeholder="Title, author or venue" autocomplete="off">
+    </div>
+    <button type="button" class="pub-filters__toggle" aria-expanded="false" aria-controls="pub-filters-panel">Filters<span class="pub-menu__count" hidden></span></button>
+    <div class="pub-filters__panel" id="pub-filters-panel">
+    <details class="pub-menu" data-menu="type">
+      <summary>Type<span class="pub-menu__count" hidden></span></summary>
+      <div class="pub-menu__panel" role="group" aria-label="Type">
+        {%- for t in site.data.publication_types %}
+        {%- assign used = site.data.publications | where: "type", t.id | size %}
+        {%- if used > 0 %}
+        <button type="button" class="chip" aria-pressed="false" data-filter="type" data-value="{{ t.id }}"><span class="dot c{{ t.tone }}" aria-hidden="true"></span>{{ t.label | escape }}</button>
+        {%- endif %}
+        {%- endfor %}
+      </div>
+    </details>
+    <details class="pub-menu" data-menu="area">
+      <summary>Research area<span class="pub-menu__count" hidden></span></summary>
+      <div class="pub-menu__panel" role="group" aria-label="Research area">
+        {%- for a in site.data.areas %}
+        <button type="button" class="chip a{{ a.pastel }}" aria-pressed="false" data-filter="area" data-value="{{ a.slug }}"><span class="dot a{{ a.pastel }}" aria-hidden="true"></span>{{ a.title | escape }}</button>
+        {%- endfor %}
+        <button type="button" class="chip" aria-pressed="false" data-filter="area" data-value="other">Other</button>
+      </div>
+    </details>
+    <button type="button" class="pub-filters__clear" hidden>Clear filters</button>
+    <button type="button" class="year-controls__all" hidden>Expand all</button>
+    </div>
+  </div>
+  <p class="pub-filters__status" role="status" aria-live="polite"></p>
+</div>
+{% for group in years %}
+{%- assign count = group.items.size %}
+{%- assign breakdown = "" %}
+{%- for t in site.data.publication_types %}
+  {%- assign n = group.items | where: "type", t.id | size %}
+  {%- if n > 0 %}{% capture piece %}<span class="year__type" title="{{ n }} {{ t.short | escape }}"><span class="dot c{{ t.tone }}" aria-hidden="true"></span>{{ n }} <span class="year__type-label">{{ t.short }}</span></span>{% endcapture %}{% assign breakdown = breakdown | append: piece %}{% endif %}
+{%- endfor %}
+<section class="section section--year" id="{{ group.name }}">
+  <div class="container">
+    <details class="year"{% if forloop.first %} open{% endif %}>
+      <summary><h2>{{ group.name }}</h2><span class="year__count">{{ count }} {% if count == 1 %}publication{% else %}publications{% endif %}</span><span class="year__types">{{ breakdown }}</span></summary>
+      <ul class="publications">
+        {% for item in group.items %}
+        {% include publication-row.html item=item %}
+        {% endfor %}
+      </ul>
+    </details>
+  </div>
+</section>
+{% endfor %}
+
+<script src="{{ '/assets/js/year-folds.js' | relative_url }}" defer></script>

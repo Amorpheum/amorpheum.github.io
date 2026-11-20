@@ -1,0 +1,16 @@
+{%- comment -%}
+  item  a publication record (_data/publications.yml). Prints its label strip: the type pill (the type's dot and
+  short name), then one tinted pastel pill per research area in `item.areas`, in the paper's own order. A paper in
+  no area ("other") gets no area pill. Same markup as the lab site's pub-labels.html, which reads areas from
+  research.yml instead; assets/js/year-folds.js filters on the row's data-areas, not on these pills.
+{%- endcomment -%}
+{%- assign type_info = site.data.publication_types | where: "id", include.item.type | first -%}
+<div class="pub-labels">
+  <span class="pill pill--type"><span class="dot c{{ type_info.tone }}" aria-hidden="true"></span>{{ type_info.short }}</span>
+  {%- for slug in include.item.areas -%}
+    {%- assign area = site.data.areas | where: "slug", slug | first -%}
+    {%- if area -%}
+      <span class="pill pill--area a{{ area.pastel }}" data-area="{{ slug }}">{{ area.short }}</span>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
