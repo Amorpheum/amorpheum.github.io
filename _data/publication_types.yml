@@ -1,0 +1,17 @@
+# CANONICAL: the lab's _data/publication_types.yml (cailab-website), copied unchanged; tests/site_test.rb compares the two when
+# that repo sits beside this one. A change belongs in the lab file first.
+# How /publications/ sorts papers. The ids are the `keywords` that the CV's publications.bib uses to section
+# its Publications list (personal/cv/cv.tex), so a paper has the same type on the site and in the CV; a test
+# compares the two when that repo sits beside this one. `label` is the filter chip, `short` the name on each
+# paper's type pill and in the year breakdown. A type with no papers gets no chip. Order here is the order
+# everywhere.
+# `tone` is the type's colour: 1-6 for the spectrum (.c1-.c6 in site.css), 0 for neutral grey (.c0). It is the
+# dot on the type pill, on the type's filter chip and in the year breakdown. One colour per type, none shared
+# (tested). Research areas use a separate pastel palette (research.yml `pastel`), so a type colour never
+# collides with an area colour. The pill text names the type as well, so colour is never the only cue.
+# Preprints are grey: not yet reviewed.
+- {id: journal, label: Journal, short: journal, tone: 6}
+- {id: conference, label: Conference, short: conference, tone: 2}
+- {id: chapter, label: Book chapter, short: chapter, tone: 3}
+- {id: extended, label: "Abstract, poster, workshop", short: "abstract/workshop", tone: 5}
+- {id: preprint, label: Preprint, short: preprint, tone: 0}

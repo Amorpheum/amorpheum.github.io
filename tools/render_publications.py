@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Render _pages/publications.md from the CV's publications.bib.
+"""Render _data/publications.yml (the Publications page's records) from the CV's publications.bib.
 
 publications.bib is the single source of truth (see personal/cv/CLAUDE.md).
-_pages/publications.md is GENERATED — do not hand-edit it. To change a
+_data/publications.yml is GENERATED — do not hand-edit it. _pages/publications.html renders it. To change a
 publication, edit the bib entry and rerun this script.
 
 Usage:
@@ -13,7 +13,12 @@ which v2 removed, so an unpinned `--with bibtexparser` crashes.
 
 BIB_PATH defaults to ~/claude/personal/cv/publications.bib. Extras that
 don't live in the bib (video/dataset links, local PDF fallbacks for old
-papers with no DOI) come from _data/pub_extras.yml, keyed by bib entry key.
+papers with no DOI, research areas) come from _data/pub_extras.yml, keyed by bib entry key.
+
+RECORD: one per paper: key, year, type, title, authors (Markdown, the owner in bold), venue, note, award
+(the bib note is bold, e.g. a CHI Honourable Mention), areas and links. `type` is the entry's type keyword
+(one of _data/publication_types.yml); an entry with none, two, or an unknown one stops the script. `areas` are
+slugs from _data/areas.yml, from pub_extras.yml `by_key.<key>.areas`; a paper with none is "other".
 
 ORDER: newest first. An entry's sort date is its printed year, then its bib
 `month` (full names or abbreviations), then the day if `by_key.<key>.date` in
@@ -24,7 +29,7 @@ the list can never look out of order. Equal dates keep bib order.
 
 SELECTED: the home page also shows the entries keyworded `selected` in the bib (the same flag that puts
 a paper on the 1-page CV, so there is one place to choose them). They are written to
-_data/selected_pubs.yml, in page order, from the same render_entry text as the publications page.
+_data/selected_pubs.yml, in page order, from render_entry, the one-line citation.
 
 CONFIDENTIALITY: this page is public. Any entry keyworded `inreview`, or
 whose `note` field mentions "under review", is dropped before rendering --
@@ -46,7 +51,9 @@ import yaml
 DEFAULT_BIB = Path.home() / "claude/personal/cv/publications.bib"
 SITE_ROOT = Path(__file__).resolve().parent.parent
 EXTRAS_PATH = SITE_ROOT / "_data" / "pub_extras.yml"
-OUTPUT_PATH = SITE_ROOT / "_pages" / "publications.md"
+PUBLICATIONS_PATH = SITE_ROOT / "_data" / "publications.yml"
+AREAS_PATH = SITE_ROOT / "_data" / "areas.yml"
+TYPES_PATH = SITE_ROOT / "_data" / "publication_types.yml"
 SELECTED_PATH = SITE_ROOT / "_data" / "selected_pubs.yml"
 OWNER_FAMILY = "choo"  # bolds any author with this family name
 
@@ -55,21 +62,6 @@ MONTHS = {
     "may": "May", "jun": "Jun.", "jul": "Jul.", "aug": "Aug.",
     "sep": "Sep.", "oct": "Oct.", "nov": "Nov.", "dec": "Dec.",
 }
-
-HEADER = """---
-layout: archive
-title: "Publications"
-permalink: /publications/
-author_profile: true
----
-
-<!-- GENERATED FILE. Do not hand-edit.
-     Source: personal/cv/publications.bib (+ _data/pub_extras.yml)
-     Regenerate: uv run --with 'bibtexparser<2' --with pyyaml tools/render_publications.py
-     Confidential work under review (keyword `inreview`, or any entry whose
-     note mentions "under review") is excluded from this public page by design. -->
-
-"""
 
 UNDER_REVIEW_RE = re.compile(r"under review", re.IGNORECASE)
 
@@ -227,23 +219,114 @@ def sort_date(entry: dict, extras: dict) -> tuple[int, int, int]:
 def public_entries(entries: list[dict]) -> tuple[list[dict], int]:
     """The entries that may appear on a public page, and how many confidential ones were dropped.
 
-    Every public output of this script (the publications page and the selected list) takes its entries from here.
+    Every public output of this script (the publications records and the selected list) takes its entries from here.
     """
     public = [e for e in entries if not is_confidential(e)]
     return public, len(entries) - len(public)
 
 
-def build_body(entries: list[dict], extras: dict) -> tuple[str, int]:
-    """Markdown list of the public entries, newest first, and how many confidential ones were dropped."""
-    public, skipped_confidential = public_entries(entries)
-    rendered = [(sort_date(entry, extras), render_entry(entry, extras)) for entry in public]
+TYPE_NOT_GIVEN = "needs exactly one type keyword ({types}) in the bib `keywords`"
 
+
+def entry_type(entry: dict, type_ids: set[str]) -> str:
+    """The entry's one type keyword. `selected` and `inreview` are flags, not types, and are ignored."""
+    keywords = [k.strip().lower() for k in entry.get("keywords", "").split(",") if k.strip()]
+    found = [k for k in keywords if k in type_ids]
+    if len(found) != 1:
+        raise ValueError(f"{entry.get('ID')}: {TYPE_NOT_GIVEN.format(types=', '.join(sorted(type_ids)))}; "
+                         f"got keywords {keywords or 'none'}")
+    return found[0]
+
+
+def entry_areas(key: str, areas: list | None, area_slugs: set[str]) -> list[str]:
+    """Research-area slugs from pub_extras.yml; an unknown slug stops the script, no area is "other"."""
+    areas = areas or []
+    unknown = [a for a in areas if a not in area_slugs]
+    if unknown:
+        raise ValueError(f"{key}: unknown research area {unknown}; known: {sorted(area_slugs)}")
+    return list(areas) or ["other"]
+
+
+def paper_links(entry: dict, extra: dict) -> list[dict]:
+    link = entry.get("doi")
+    url = f"https://doi.org/{link}" if link else entry.get("url")
+    links = []
+    if url or extra.get("pdf"):
+        links.append({"label": "paper", "url": url or extra["pdf"]})
+    for label in ("video", "dataset"):
+        if extra.get(label):
+            links.append({"label": label, "url": extra[label]})
+    return links
+
+
+def build_record(entry: dict, extras: dict, area_slugs: set[str], type_ids: set[str]) -> dict:
+    key = entry.get("ID", "")
+    extra = extras.get("by_key", {}).get(key, {})
+    note, award = format_note(entry)
+    return {
+        "key": key,
+        "year": printed_year(entry),
+        "type": entry_type(entry, type_ids),
+        "title": strip_latex(entry.get("title", "Untitled")),
+        "authors": format_authors(entry.get("author", "")),
+        "venue": format_venue(entry),
+        "note": note,
+        "award": award,
+        "areas": entry_areas(key, extra.get("areas"), area_slugs),
+        "links": paper_links(entry, extra),
+    }
+
+
+def build_extra_record(extra: dict, area_slugs: set[str], type_ids: set[str]) -> dict:
+    """A hand-carried entry (pre-bib) from pub_extras.yml `extra_entries`, in the same shape as a bib record."""
+    title = extra.get("title", "?")
+    if extra.get("type") not in type_ids:
+        raise ValueError(f"extra_entries '{title}': type must be one of {sorted(type_ids)}, got {extra.get('type')!r}")
+    return {
+        "key": extra.get("key", ""),
+        "year": int(extra["year"]),
+        "type": extra["type"],
+        "title": title,
+        "authors": extra["authors"],
+        "venue": extra["venue"],
+        "note": "",
+        "award": False,
+        "areas": entry_areas(title, extra.get("areas"), area_slugs),
+        "links": extra.get("links", []),
+    }
+
+
+def build_records(entries: list[dict], extras: dict, area_slugs: set[str],
+                  type_ids: set[str]) -> tuple[list[dict], int]:
+    """The public papers as records, newest first, and how many confidential ones were dropped."""
+    public, skipped_confidential = public_entries(entries)
+    ranked = [(sort_date(e, extras), build_record(e, extras, area_slugs, type_ids)) for e in public]
     for extra in extras.get("extra_entries", []):
-        rendered.append(((int(extra["year"]), 0, 0), extra["line"].strip()))
+        ranked.append(((int(extra["year"]), 0, 0), build_extra_record(extra, area_slugs, type_ids)))
 
     # Newest first. reverse=True keeps the original order of equal keys, so ties follow the bib.
-    rendered.sort(key=lambda r: r[0], reverse=True)
-    return "\n".join(line for _, line in rendered) + "\n", skipped_confidential
+    ranked.sort(key=lambda r: r[0], reverse=True)
+    return [record for _, record in ranked], skipped_confidential
+
+
+PUBLICATIONS_HEADER = """# GENERATED by tools/render_publications.py. Do not hand-edit.
+# Source: personal/cv/publications.bib (+ _data/pub_extras.yml). Rendered by _pages/publications.html.
+# Confidential work under review (keyword `inreview`, or any entry whose note mentions "under review") is
+# excluded from this public data by design; the same filter guards selected_pubs.yml.
+# Newest first; regenerate with bin/sync-publications.
+"""
+
+
+def render_publications_yaml(records: list[dict]) -> str:
+    return PUBLICATIONS_HEADER + yaml.safe_dump(records, sort_keys=False, allow_unicode=True, width=1000)
+
+
+def load_area_slugs() -> set[str]:
+    return {a["slug"] for a in yaml.safe_load(AREAS_PATH.read_text())}
+
+
+def load_type_ids() -> set[str]:
+    return {t["id"] for t in yaml.safe_load(TYPES_PATH.read_text())}
 
 
 def is_selected(entry: dict) -> bool:
@@ -252,7 +335,7 @@ def is_selected(entry: dict) -> bool:
 
 def build_selected(entries: list[dict], extras: dict) -> tuple[list[dict], int]:
     """The `selected` public entries, newest first, as {key, year, citation}; and how many selected ones were
-    dropped as confidential. `citation` is the publications-page line without its list marker."""
+    dropped as confidential. `citation` is the one-line ACM-style citation (render_entry) without its list marker."""
     flagged = [e for e in entries if is_selected(e)]
     public, dropped = public_entries(flagged)
     public.sort(key=lambda e: sort_date(e, extras), reverse=True)  # stable: ties keep bib order
@@ -272,14 +355,15 @@ def render_selected_yaml(items: list[dict]) -> str:
 
 
 def render_all(bib_path: Path) -> tuple[str, str, int, int]:
-    """(publications page text, selected_pubs.yml text, confidential entries dropped from the page,
+    """(publications.yml text, selected_pubs.yml text, confidential entries dropped from the publications,
     confidential entries dropped from the selected list). Pure: writes nothing."""
     with open(bib_path) as f:
         db = bibtexparser.load(f)
     extras = load_extras()
-    body, skipped_confidential = build_body(db.entries, extras)
+    records, skipped_confidential = build_records(db.entries, extras, load_area_slugs(), load_type_ids())
     selected, dropped_selected = build_selected(db.entries, extras)
-    return HEADER + body, render_selected_yaml(selected), skipped_confidential, dropped_selected
+    return (render_publications_yaml(records), render_selected_yaml(selected),
+            skipped_confidential, dropped_selected)
 
 
 def main():
@@ -287,10 +371,10 @@ def main():
     if not bib_path.exists():
         sys.exit(f"bib not found: {bib_path}")
 
-    page, selected_yaml, skipped_confidential, dropped = render_all(bib_path)
-    OUTPUT_PATH.write_text(page)
+    publications_yaml, selected_yaml, skipped_confidential, dropped = render_all(bib_path)
+    PUBLICATIONS_PATH.write_text(publications_yaml)
     SELECTED_PATH.write_text(selected_yaml)
-    print(f"Wrote {page.count(chr(10)) - HEADER.count(chr(10))} entries to {OUTPUT_PATH}"
+    print(f"Wrote {publications_yaml.count('- key:')} publications to {PUBLICATIONS_PATH}"
           f" ({skipped_confidential} confidential entries excluded)")
     print(f"Wrote {selected_yaml.count('- key:')} selected entries to {SELECTED_PATH}")
     if dropped:
