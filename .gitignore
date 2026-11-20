@@ -6,3 +6,4 @@ vendor/bundle/
 .DS_Store
 .playwright-mcp/
 __pycache__/
+vendor/cache/
