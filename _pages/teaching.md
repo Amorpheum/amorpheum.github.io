@@ -42,7 +42,9 @@ redirect_from:
 - Denice Tuinhof, VU Amsterdam (Masters, co-advised with Lars Lischke and Simon Perrault, graduated Aug 2020)
 
 ### Student Awards
+- Kellie Yu Hui Sim (PhD) — Google PhD Fellowship for Human-Computer Interaction, 2026. One of twelve HCI recipients worldwide, and the only one in Singapore.
 - Kellie Yu Hui Sim (PhD) — Top Seed Award, Design Business Chamber Singapore (DBCS) Seed Award 2026. One of 10 recipients.
+- Weiyan Shi (PhD) — Seed Award, Design Business Chamber Singapore (DBCS) Seed Award 2026.
 
 <!-- ### Postdocs -->
 
