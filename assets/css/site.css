@@ -1,6 +1,6 @@
 /* kennychoo.net stylesheet.
-   Source of the design language: cailab-website/assets/css/site.css (canonical; synced 2026-11-19).
-   Everything above "Personal-only" is copied from that file unchanged, and tests/site_test.rb checks the
+   Source of the design language: cailab-website/assets/css/site.css (canonical; synced 2026-11-20).
+   Everything above "Personal-only" is copied from that file unchanged (a subset of it), and tests/site_test.rb checks the
    :root tokens against it when the sibling repo is present. A visual change belongs in the lab file first. */
 :root{
  /* colour */
@@ -14,6 +14,16 @@
  --halo:#FFFFFF;
  --on-accent:#FFFFFF;
  --spec-1:#F0A500; --spec-2:#E8590C; --spec-3:#D6204A; --spec-4:#B5179E; --spec-5:#0E9FC4; --spec-6:#2457C5;
+ /* Research-area pastels: up to 7 areas, one slot each (research.yml `pastel`, class .a1-.a7). -bg fills a pill or
+    chip, -edge is its border, -dot the small dot. Ink stays --text on the fill. Slots 1-3 are the most distinct
+    from each other, so the first three areas never sit close; the rest follow. */
+ --area-1-bg:#FBDDE3; --area-1-edge:#EDA6B6; --area-1-dot:#D9607A; /* rose */
+ --area-2-bg:#D1E7F8; --area-2-edge:#92C3EA; --area-2-dot:#3B8FD2; /* sky */
+ --area-3-bg:#FAF0BC; --area-3-edge:#E6CF66; --area-3-dot:#C79B10; /* butter */
+ --area-4-bg:#D3F0DF; --area-4-edge:#93D3B0; --area-4-dot:#3EA877; /* mint */
+ --area-5-bg:#E2DCF8; --area-5-edge:#B5A8EA; --area-5-dot:#7B64D2; /* lavender */
+ --area-6-bg:#FDE0CC; --area-6-edge:#F0AF88; --area-6-dot:#E2793F; /* peach */
+ --area-7-bg:#CCEFEE; --area-7-edge:#84CECB; --area-7-dot:#27A39F; /* aqua */
  --accent:var(--text); --focus:var(--spec-6);
  /* type */
  --font-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
@@ -46,7 +56,8 @@ code{font-family:var(--font-mono);font-size:var(--fs-label)}
 .container{width:100%;max-width:calc(var(--container) + 2*var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
 
 /* spectrum classes shared by svg graphs and dots */
-.c1{--c:var(--spec-1)} .c2{--c:var(--spec-2)} .c3{--c:var(--spec-3)} .c4{--c:var(--spec-4)} .c5{--c:var(--spec-5)} .c6{--c:var(--spec-6)}
+.a1{--a-bg:var(--area-1-bg);--a-edge:var(--area-1-edge);--c:var(--area-1-dot)} .a2{--a-bg:var(--area-2-bg);--a-edge:var(--area-2-edge);--c:var(--area-2-dot)} .a3{--a-bg:var(--area-3-bg);--a-edge:var(--area-3-edge);--c:var(--area-3-dot)} .a4{--a-bg:var(--area-4-bg);--a-edge:var(--area-4-edge);--c:var(--area-4-dot)} .a5{--a-bg:var(--area-5-bg);--a-edge:var(--area-5-edge);--c:var(--area-5-dot)} .a6{--a-bg:var(--area-6-bg);--a-edge:var(--area-6-edge);--c:var(--area-6-dot)} .a7{--a-bg:var(--area-7-bg);--a-edge:var(--area-7-edge);--c:var(--area-7-dot)}
+.c0{--c:var(--line-strong)} .c1{--c:var(--spec-1)} .c2{--c:var(--spec-2)} .c3{--c:var(--spec-3)} .c4{--c:var(--spec-4)} .c5{--c:var(--spec-5)} .c6{--c:var(--spec-6)}
 svg circle{fill:var(--c)}
 svg line,svg path{stroke:var(--c);fill:none}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
@@ -148,6 +159,125 @@ svg line,svg path{stroke:var(--c);fill:none}
 .project-block__link:focus-visible{outline:none}
 .project-block__link:focus-visible::after{outline:2px solid var(--focus);outline-offset:3px}
 
+/* ===== Publications page: copied from the lab stylesheet (year folds, filter bar, label pills, rows) ===== */
+/* The hidden attribute must win over component display rules: the controls, rows and years that
+   assets/js/year-folds.js shows or hides all set `display`. */
+[hidden]{display:none!important}
+
+/* publication years: one native fold per year, newest open (assets/js/year-folds.js reveals deep links) */
+.year-controls__all,.pub-filters__clear{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--space-4);border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);background:none;color:var(--text);font:500 var(--fs-small)/1 var(--font-body);cursor:pointer}
+.year-controls__all:hover,.pub-filters__clear:hover{border-color:var(--text);background:var(--surface-2)}
+.section--year{padding-block:var(--space-3)}
+.section--year:last-of-type{padding-bottom:var(--space-8)}
+.year summary h2{font:700 var(--fs-h2)/var(--lh-tight) var(--font-display);letter-spacing:-.015em}
+.year__count{color:var(--text-muted);font-size:var(--fs-small)}
+.year__types{display:inline-flex;flex-wrap:wrap;align-items:center;column-gap:var(--space-3);row-gap:var(--space-1);min-width:0;color:var(--text-muted);font:500 var(--fs-label)/1.4 var(--font-mono)}
+.year__type{display:inline-flex;align-items:center;gap:6px}
+.year__type .dot{width:8px;height:8px}
+.year__count{white-space:nowrap}
+/* Phones: the type counts drop to their own line as dots and numbers; each name stays in the page for screen
+   readers (the same clip as .visually-hidden) and as the entry's tooltip. */
+@media (max-width:640px){
+  .year summary{flex-wrap:wrap;row-gap:var(--space-1)}
+  .year__types{flex:1 0 100%;padding-left:26px;column-gap:var(--space-4)}
+  .year__type-label{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+}
+/* publication filter (year-folds.js): one row of search, Type and Research area menus, then Clear (while
+   filtering) or Expand all (otherwise) in the same slot, and a live result line. The menus are native
+   <details>; their chips take no room until opened. */
+.pub-filters{padding-block:var(--space-5) var(--space-3)}
+.pub-filters__row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2)}
+.pub-filters__search{flex:1 1 240px;max-width:360px}
+.pub-filters__search input{width:100%;min-height:var(--tap);padding:0 var(--space-4);border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);background:var(--bg);color:var(--text);font:400 var(--fs-body)/1 var(--font-body)}
+.pub-filters__search input:focus-visible,.chip:focus-visible,.pub-filters__clear:focus-visible,.pub-filters__toggle:focus-visible,.pub-menu summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.chip{display:inline-flex;align-items:center;gap:var(--space-2)}
+.chip[aria-pressed="true"] .dot{box-shadow:0 0 0 2px var(--on-accent)}
+.chip,.pub-filters__toggle,.pub-menu summary{min-height:var(--tap);padding:var(--space-2) var(--space-4);border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);background:none;color:var(--text);font:500 var(--fs-small)/1.2 var(--font-body);text-align:left;cursor:pointer}
+.chip:hover,.pub-filters__toggle:hover,.pub-menu summary:hover{border-color:var(--text);background:var(--surface-2)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.pub-menu{position:relative}
+.pub-menu summary{list-style:none;display:inline-flex;align-items:center;gap:var(--space-2)}
+.pub-menu summary::-webkit-details-marker{display:none}
+.pub-menu summary::after{content:"";flex:none;width:7px;height:7px;margin-left:var(--space-1);border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:translateY(-2px) rotate(45deg);transition:transform .15s ease}
+.pub-menu[open] summary{border-color:var(--text)}
+.pub-menu[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.pub-menu__count{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:var(--radius-pill);background:var(--accent);color:var(--on-accent);font:600 var(--fs-label)/1 var(--font-body)}
+.pub-menu__panel{position:absolute;top:calc(100% + var(--space-2));left:0;z-index:20;display:flex;flex-wrap:wrap;gap:var(--space-2);width:max-content;max-width:min(560px,calc(100vw - 2 * var(--gutter)));padding:var(--space-4);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-m);box-shadow:0 8px 24px rgba(17,20,27,.12)}
+.pub-filters__status{margin-top:var(--space-3);font-size:var(--fs-small);color:var(--text-muted)}
+.pub-filters__status:empty{margin:0}
+/* Above 640px the Filters toggle is hidden and its panel dissolves, so the menus sit in the row as popovers. */
+.pub-filters__toggle{display:none}
+.pub-filters__panel{display:contents}
+/* Phones: search and one Filters button share the row (~44px). The panel opens below it (year-folds.js) and shows
+   both menus flat: each summary becomes a section label and its chips are always visible. */
+@media (max-width:640px){
+  .pub-filters__search{flex:1 1 0;min-width:0;max-width:none}
+  .pub-filters__toggle{display:inline-flex;align-items:center;gap:var(--space-2);flex:none}
+  .pub-filters__toggle::after{content:"";flex:none;width:7px;height:7px;margin-left:var(--space-1);border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:translateY(-2px) rotate(45deg);transition:transform .15s ease}
+  .pub-filters__toggle[aria-expanded="true"]{border-color:var(--text);background:var(--surface-2)}
+  .pub-filters__toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+  .pub-filters__panel{display:none}
+  .pub-filters.is-open .pub-filters__panel{display:flex;flex:1 0 100%;flex-direction:column;align-items:flex-start;gap:var(--space-3);margin-top:var(--space-2)}
+  .pub-menu{width:100%}
+  .pub-menu summary{pointer-events:none;min-height:0;padding:0;border:0;background:none;margin-bottom:var(--space-2);font:600 var(--fs-label)/1.2 var(--font-mono);color:var(--text-muted)}
+  .pub-menu summary::after{display:none}
+  .pub-menu__panel{position:static;width:auto;max-width:none;margin:0;padding:0;border:0;box-shadow:none;background:none}
+}
+.year>.publications{margin-top:var(--space-4)}
+/* publication-row */
+.publications{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-l);padding:var(--space-2) var(--space-5)}
+.publication-row{display:grid;grid-template-columns:200px 1fr auto;gap:var(--space-4) var(--space-5);align-items:start;padding-block:var(--space-4)}
+.publication-row+.publication-row{border-top:1px solid var(--line)}
+.publication-row__venue{padding-top:3px;font:500 var(--fs-small)/1.4 var(--font-mono);color:var(--text)}
+.medal{font-style:normal}
+.publication-row__title{font:600 1.125rem/1.3 var(--font-display)}
+.publication-row__authors{font-size:var(--fs-small);color:var(--text-muted);margin-top:var(--space-1)}
+.publication-row__authors strong{color:var(--text);font-weight:600}
+/* The main column stretches to the row's height so its label strip sits at the bottom, level with the thumbnail */
+.publication-row__main{align-self:stretch;display:flex;flex-direction:column}
+/* label strip (_includes/pub-labels.html), on publication rows and Research cards: the type pill (outlined,
+   with the type's dot) then one tinted pill per research area. margin-top:auto pins it to the card's bottom. */
+.pub-labels{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2);margin-top:auto;padding-top:var(--space-3)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:2px var(--space-3);border:1px solid var(--line-strong);border-radius:var(--radius-pill);font:500 var(--fs-label)/1.5 var(--font-mono);color:var(--text)}
+.pill .dot{width:8px;height:8px}
+.pill--type{color:var(--text-muted)}
+.pill--area{background:var(--a-bg);border-color:var(--a-edge);font:600 var(--fs-label)/1.5 var(--font-body)}
+.paper-card__link .pub-labels{padding-top:var(--space-2)}
+.chip[data-filter="area"]:not([aria-pressed="true"]){background:var(--a-bg);border-color:var(--a-edge)}
+.publication-row__links{display:flex;gap:var(--space-2)}
+.publication-row__links a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--space-4);border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);font-weight:500;text-decoration:none}
+.publication-row__links a:hover{border-color:var(--text);background:var(--surface-2)}
+
+/* folds (alumni lists, publication years): a visible chevron, since display:flex drops the native marker */
+.fold summary,.year summary{list-style:none;cursor:pointer;min-height:var(--tap);display:flex;align-items:center;gap:var(--space-3)}
+.fold summary::-webkit-details-marker,.year summary::-webkit-details-marker{display:none}
+.fold summary::before,.year summary::before{content:"";flex:none;width:8px;height:8px;margin-inline:4px 2px;border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:rotate(-45deg);transition:transform .15s ease}
+.fold[open]>summary::before,.year[open]>summary::before{transform:rotate(45deg)}
+.fold summary:focus-visible,.year summary:focus-visible{outline:2px solid var(--spec-6);outline-offset:2px;border-radius:var(--radius-s)}
+@media (prefers-reduced-motion:reduce){.fold summary::before,.year summary::before{transition:none}}
+
+/* Phones: a row is a compact card. The side and main wrappers dissolve (display:contents), so venue, figure, title,
+   authors, labels and links are all items of the row's own grid. A row with a figure (data-figure) puts the 96px
+   thumbnail beside the venue and title; authors run full width below; one footer line holds the labels and links.
+   About 230px a row with a figure and 240px without, down from 427px and 306px. Nothing is hidden or clamped. */
+@media (max-width:640px){
+  .publication-row{grid-template-columns:1fr auto;grid-template-areas:"venue venue" "title title" "authors authors" "labels links";gap:var(--space-1) var(--space-3);padding-block:var(--space-3)}
+  .publication-row[data-figure]{grid-template-columns:96px 1fr auto;grid-template-areas:"fig venue venue" "fig title title" "authors authors authors" "labels labels links"}
+  .publication-row__side,
+  .publication-row__main{display:contents}
+  .publication-row__venue{grid-area:venue;padding-top:0;font-size:var(--fs-label)}
+  .publication-row__figure{grid-area:fig;width:96px;align-self:start}
+  .publication-row__title{grid-area:title;font-size:1rem}
+  .publication-row__authors{grid-area:authors;margin-top:var(--space-2);font-size:.875rem}
+  .publication-row .pub-labels{grid-area:labels;margin-top:0;padding-top:var(--space-2)}
+  .publication-row__links{grid-area:links;align-self:end;justify-self:end;gap:var(--space-1)}
+  .publication-row__links a{padding:0 var(--space-3);font-size:var(--fs-small)}
+}
+
+/* a paper row reached from a card: clear the sticky nav, and mark it */
+.publication-row{scroll-margin-top:96px}
+.publication-row:target{outline:2px solid var(--text);outline-offset:6px;border-radius:var(--radius-s)}
+
 /* ===== Personal-only: not in the lab stylesheet ===== */
 
 /* hero: the director card, a name-seeded ring around the photo */
@@ -183,21 +313,20 @@ svg line,svg path{stroke:var(--c);fill:none}
 
 /* markdown pages (teaching, CV, service, courses, publications) */
 .prose{max-width:78ch}
-.prose:has(>ol){max-width:900px}
 .prose h2{font:700 var(--fs-h3)/1.2 var(--font-display);margin-top:var(--space-4);padding-top:var(--space-5);border-top:1px solid var(--line)}
 .prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
 .prose h3{font:600 1.125rem/1.3 var(--font-display);margin-top:var(--space-2)}
 .prose p>em:only-child{color:var(--text-muted);font-style:normal;font-family:var(--font-mono);font-size:var(--fs-label)}
 .prose hr{border:0;border-top:1px solid var(--line);width:100%}
 .prose a{text-underline-offset:3px}
-/* the generated publication list (and the home page's selected papers): one item per paper, shown as rows in a panel */
-.prose>ol,.pub-list{list-style:none;padding:var(--space-2) var(--space-5);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-l)}
-.prose>ol li,.pub-list li{padding-block:var(--space-4);font-size:var(--fs-small);line-height:1.5;color:var(--text-muted)}
-.prose>ol li+li,.pub-list li+li{border-top:1px solid var(--line)}
-.prose>ol li strong,.pub-list li strong{color:var(--text);font-weight:600}
-.prose>ol li a,.pub-list li a{color:var(--text);font:600 1.0625rem/1.35 var(--font-display)}
+/* the home page's selected papers: one item per paper, shown as rows in a panel */
+.pub-list{list-style:none;padding:var(--space-2) var(--space-5);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-l)}
+.pub-list li{padding-block:var(--space-4);font-size:var(--fs-small);line-height:1.5;color:var(--text-muted)}
+.pub-list li+li{border-top:1px solid var(--line)}
+.pub-list li strong{color:var(--text);font-weight:600}
+.pub-list li a{color:var(--text);font:600 1.0625rem/1.35 var(--font-display)}
 .pub-list{max-width:900px;margin:0}
-@media (max-width:900px){.prose>ol,.pub-list{padding-inline:var(--space-4)}}
+@media (max-width:900px){.pub-list{padding-inline:var(--space-4)}}
 
 /* nav: a text brand instead of the lab's logo */
 .nav__brand{font-size:1.375rem;letter-spacing:-.01em}
@@ -231,3 +360,13 @@ svg line,svg path{stroke:var(--c);fill:none}
 /* hero: the first paragraph leads, the rest reads as body */
 .hero-person__lead{display:grid;gap:var(--space-3)}
 .hero-person__lead p+p{font-size:var(--fs-body);color:var(--text-muted)}
+
+/* Publications rows here have no venue column or figure (a bib venue is long: proceedings, city, pages), so the
+   venue sits under the authors and the row is title | links. The phone grid drops the lab's "fig" areas to match. */
+.publication-row{grid-template-columns:1fr auto}
+.publication-row__venue{margin-top:var(--space-1);padding-top:0;font:400 var(--fs-small)/1.45 var(--font-body);color:var(--text-muted)}
+.publication-row__venue strong{color:var(--text);font-weight:600}
+@media (max-width:640px){
+  .publication-row{grid-template-areas:"title title" "authors authors" "venue venue" "labels links"}
+  .publication-row__venue{font-size:.875rem}
+}

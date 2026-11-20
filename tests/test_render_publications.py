@@ -1,4 +1,4 @@
-"""Tests for tools/render_publications.py: ordering and the confidentiality filter.
+"""Tests for tools/render_publications.py: ordering, the confidentiality filter and the published records.
 
 Run: uv run --with 'bibtexparser<2' --with pyyaml python -m unittest discover -s tests -p 'test_*.py'
 (stdlib unittest: the Ruby suite already gates the build, and pytest would be a new dependency.)
@@ -13,19 +13,31 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 import render_publications as rp  # noqa: E402
 
 
+AREAS = {"care", "multimodal", "responsible-ai"}
+TYPES = {"journal", "conference", "chapter", "extended", "preprint"}
+
+
 def entry(key, year, month=None, **extra):
     e = {"ID": key, "author": "Choo, Kenny Tsu Wei", "title": f"Title {key}", "year": str(year),
-         "booktitle": "Some Venue", "doi": f"10.1/{key}"}
+         "booktitle": "Some Venue", "doi": f"10.1/{key}", "keywords": "conference"}
     if month is not None:
         e["month"] = month
     e.update(extra)
     return e
 
 
+OLD = {"year": "2016", "type": "extended", "title": "Old paper", "authors": "Tan, A. and **Choo, K.T.W.**",
+       "venue": "Some Workshop (2016)", "links": [{"label": "paper", "url": "/files/old.pdf"}]}
+
+
+def records(entries, extras=None):
+    recs, _ = rp.build_records(entries, extras or {}, AREAS, TYPES)
+    return recs
+
+
 def order(entries, extras=None):
-    """Keys of the rendered entries, in page order."""
-    body, _ = rp.build_body(entries, extras or {})
-    return [line.split("[Title ")[1].split("]")[0] for line in body.splitlines()]
+    """Keys of the published entries, in page order."""
+    return [r["key"] for r in records(entries, extras)]
 
 
 class MonthNumberTest(unittest.TestCase):
@@ -80,11 +92,10 @@ class OrderTest(unittest.TestCase):
             order([entry("x", 2025, "March")], {"by_key": {"x": {"date": "2024-12-16"}}})
 
     def test_hand_carried_entries_slot_in_by_year(self):
-        extras = {"extra_entries": [{"year": "2016", "line": "1. Old paper 2016."}]}
-        body, _ = rp.build_body([entry("new", 2026, "May"), entry("mid", 2018, "June")], extras)
-        lines = body.splitlines()
-        self.assertEqual(len(lines), 3)
-        self.assertIn("Old paper", lines[-1])
+        extras = {"extra_entries": [OLD]}
+        recs = records([entry("new", 2026, "May"), entry("mid", 2018, "June")], extras)
+        self.assertEqual([r["year"] for r in recs], [2026, 2018, 2016])
+        self.assertEqual(recs[-1]["title"], "Old paper")
 
 
 class ConfidentialityTest(unittest.TestCase):
@@ -95,11 +106,89 @@ class ConfidentialityTest(unittest.TestCase):
             entry("kw2", 2026, "June", keywords="foo, InReview"),
             entry("note", 2026, "July", note="Under review at CHI"),
         ]
-        body, skipped = rp.build_body(entries, {})
+        recs, skipped = rp.build_records(entries, {}, AREAS, TYPES)
         self.assertEqual(order(entries), ["public"])
         self.assertEqual(skipped, 3)
         for secret in ("kw", "kw2", "note"):
-            self.assertNotIn(f"Title {secret}", body)
+            self.assertNotIn(f"Title {secret}", str(recs))
+        self.assertNotIn("Title kw", rp.render_publications_yaml(recs))
+
+
+class RecordTest(unittest.TestCase):
+    """What each paper becomes in _data/publications.yml, which the page template renders."""
+
+    def one(self, e, extras=None):
+        (rec,) = records([e], extras)
+        return rec
+
+    def test_fields(self):
+        rec = self.one(entry("k", 2026, "May", pages="1--5", address="Rome, Italy"))
+        self.assertEqual(set(rec), {"key", "year", "type", "title", "authors", "venue", "note", "award", "areas", "links"})
+        self.assertEqual((rec["key"], rec["year"], rec["title"]), ("k", 2026, "Title k"))
+        self.assertEqual(rec["authors"], "**Choo, K.T.W.**")
+        self.assertEqual(rec["venue"], "Some Venue (Rome, Italy, May 2026), 1\u20135")
+
+    def test_type_is_the_type_keyword_and_selected_is_not_a_type(self):
+        self.assertEqual(self.one(entry("k", 2026, keywords="journal, selected"))["type"], "journal")
+        self.assertEqual(self.one(entry("k", 2026, keywords="selected, preprint"))["type"], "preprint")
+
+    def test_missing_double_or_unknown_type_is_an_error(self):
+        for keywords in ("selected", "", "journal, conference", "poster"):
+            with self.subTest(keywords=keywords), self.assertRaises(ValueError):
+                records([entry("k", 2026, keywords=keywords)])
+
+    def test_a_confidential_entry_needs_no_type(self):
+        # it is dropped before anything is asked of it
+        self.assertEqual(records([entry("k", 2026, keywords="inreview")]), [])
+
+    def test_areas_come_from_the_sidecar_and_default_to_other(self):
+        extras = {"by_key": {"a": {"areas": ["care", "multimodal"]}}}
+        self.assertEqual(self.one(entry("a", 2026), extras)["areas"], ["care", "multimodal"])
+        self.assertEqual(self.one(entry("b", 2026), extras)["areas"], ["other"])
+
+    def test_an_unknown_area_slug_is_an_error(self):
+        with self.assertRaises(ValueError):
+            records([entry("a", 2026)], {"by_key": {"a": {"areas": ["cares"]}}})
+
+    def test_award_follows_a_bold_note(self):
+        bold = self.one(entry("a", 2026, note="{\\textbf{Honourable Mention Award}}"))
+        self.assertEqual((bold["award"], bold["note"]), (True, "Honourable Mention Award"))
+        plain = self.one(entry("b", 2026, note="arXiv:2606.00028"))
+        self.assertEqual((plain["award"], plain["note"]), (False, "arXiv:2606.00028"))
+        none = self.one(entry("c", 2026))
+        self.assertEqual((none["award"], none["note"]), (False, ""))
+
+    def test_links_are_paper_then_video_then_dataset(self):
+        extras = {"by_key": {"k": {"video": "https://v", "dataset": "https://d"}}}
+        links = self.one(entry("k", 2026), extras)["links"]
+        self.assertEqual(links, [{"label": "paper", "url": "https://doi.org/10.1/k"},
+                                 {"label": "video", "url": "https://v"}, {"label": "dataset", "url": "https://d"}])
+
+    def test_paper_link_falls_back_to_the_bib_url_then_the_sidecar_pdf(self):
+        no_doi = entry("k", 2026, url="https://example.org/p")
+        del no_doi["doi"]
+        self.assertEqual(self.one(no_doi)["links"], [{"label": "paper", "url": "https://example.org/p"}])
+        bare = entry("k", 2026)
+        del bare["doi"]
+        self.assertEqual(self.one(bare, {"by_key": {"k": {"pdf": "/files/k.pdf"}}})["links"],
+                         [{"label": "paper", "url": "/files/k.pdf"}])
+
+    def test_hand_carried_entries_are_structured_and_typed(self):
+        rec = records([], {"extra_entries": [OLD]})[0]
+        self.assertEqual(rec["type"], "extended")
+        self.assertEqual(rec["areas"], ["other"])
+        self.assertEqual(rec["links"], OLD["links"])
+        self.assertFalse(rec["award"])
+
+    def test_a_hand_carried_entry_without_a_known_type_is_an_error(self):
+        for bad in ({k: v for k, v in OLD.items() if k != "type"}, {**OLD, "type": "poster"}):
+            with self.assertRaises(ValueError):
+                records([], {"extra_entries": [bad]})
+
+    def test_yaml_round_trips(self):
+        import yaml
+        recs = records([entry("a", 2026, "May"), entry("b", 2025, "May")], {"extra_entries": [OLD]})
+        self.assertEqual(yaml.safe_load(rp.render_publications_yaml(recs)), recs)
 
 
 class SelectedTest(unittest.TestCase):
@@ -134,13 +223,11 @@ class SelectedTest(unittest.TestCase):
         self.assertNotIn("Title kw", str(items))
         self.assertNotIn("Title note", str(items))
 
-    def test_each_selected_citation_is_a_line_of_the_publications_page(self):
-        entries = [entry("a", 2026, "May", keywords="selected", note="{\\textbf{Honourable Mention}}"),
-                   entry("b", 2025, "May")]
-        body, _ = rp.build_body(entries, {})
+    def test_each_selected_paper_is_on_the_publications_page(self):
+        entries = [entry("a", 2026, "May", keywords="conference, selected"), entry("b", 2025, "May")]
         items, _ = rp.build_selected(entries, {})
-        self.assertEqual(len(items), 1)
-        self.assertIn("1. " + items[0]["citation"], body.splitlines())
+        self.assertEqual([i["key"] for i in items], ["a"])
+        self.assertTrue({i["key"] for i in items} <= set(order(entries)))
 
     def test_yaml_output_round_trips(self):
         import yaml
@@ -159,9 +246,9 @@ class SiteInStepWithBibTest(unittest.TestCase):
     def test_generated_files_match_what_the_bib_produces_now(self):
         if not rp.DEFAULT_BIB.exists():
             self.skipTest(f"{rp.DEFAULT_BIB} not present")
-        page, selected, _, _ = rp.render_all(rp.DEFAULT_BIB)
+        publications, selected, _, _ = rp.render_all(rp.DEFAULT_BIB)
         hint = "out of step with the CV bib: run bin/sync-publications and review the diff"
-        self.assertEqual(rp.OUTPUT_PATH.read_text(), page, f"_pages/publications.md {hint}")
+        self.assertEqual(rp.PUBLICATIONS_PATH.read_text(), publications, f"_data/publications.yml {hint}")
         self.assertEqual(rp.SELECTED_PATH.read_text(), selected, f"_data/selected_pubs.yml {hint}")
 
 

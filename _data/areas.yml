@@ -1,8 +1,11 @@
-# The three research areas shown on the home page. The lab's _data/research.yml (cailab-website) is canonical for
-# `slug` and `title`; a test compares them when that repo is checked out beside this one. `body` is this
-# page's own wording, one sentence per area.
+# The three research areas shown on the home page and as the Publications page's pills and filter. The lab's
+# _data/research.yml (cailab-website) is canonical for `slug`, `title`, `short` (the pill's name) and `pastel`
+# (its colour, 1-7: .aN in site.css); a test compares them when that repo is checked out beside this one.
+# `body` is this page's own wording, one sentence per area.
 - slug: care
   title: "AI in Care and Sensitive Settings"
+  short: Care
+  pastel: 3
   body: >-
     AI agents that help people put difficult decisions into words in advance care planning, multimodal models
     aligned with speech-language pathologists on parent–child interaction (both CHI 2026 Honourable Mention
@@ -10,12 +13,16 @@
     carries the responsibility and emotional labour when AI joins a care relationship.
 - slug: multimodal
   title: "Multimodal Human–AI Interaction"
+  short: Multimodal
+  pastel: 4
   body: >-
     AI that works across sketch, speech, video, and 3D: TalkSketch, which lets designers sketch and talk to
     generative AI at the same time; interfaces for modelling physical objects in virtual reality; and
     drone-based computer vision that gives swimming coaches real-time analytics.
 - slug: responsible-ai
   title: "Responsible AI: Risks and Robustness of Language Models"
+  short: Responsible AI
+  pastel: 1
   body: >-
     Where language models fail and whom those failures harm: how people use LLMs as both sword and shield in
     disinformation, how offensive-language detectors break under the cloaking and code-mixing of online

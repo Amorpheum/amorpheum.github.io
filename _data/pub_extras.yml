@@ -1,4 +1,4 @@
-# Sidecar for _pages/publications.md generation (tools/render_publications.py).
+# Sidecar for _data/publications.yml generation (tools/render_publications.py).
 #
 # publications.bib (personal/cv/) only goes back to 2018. These pre-2018
 # entries were already public on the site and are NOT in the bib, so they
@@ -11,8 +11,12 @@
 #           the paper became public (earliest public availability, the same
 #           rule as the CAILab site's publications.yml). Its year must equal
 #           the printed year or the generator stops.
-# `extra_entries`: whole entries not present in the bib at all, given as
-#           pre-formatted markdown lines plus a sort year.
+#           `areas` lists the paper's research areas (slugs in _data/areas.yml), for the area pills
+#           and the Research area filter; none means "Other". The CAILab site's research.yml is
+#           canonical for these; a test compares the two by title when that repo sits beside this one.
+# `extra_entries`: whole entries not present in the bib at all, as records: year, type (one of
+#           publication_types.yml; the bib has no keyword for these six, so the type is a judgement),
+#           title, authors (Markdown), venue, links, and optionally areas.
 
 by_key:
   choo_examining_2019:
@@ -21,39 +25,102 @@ by_key:
     video: https://www.youtube.com/watch?v=hLKF-EJuH4g
   shi_more_2026:
     date: "2026-03"       # earliest public date per the CAILab list; the bib month is April
+    areas: [care, multimodal]
   sim_envisioning_2025:
     date: "2025-03"       # earliest public date per the CAILab list; the bib month is April
+    areas: [care]
   sim_redistributing_2026:
     date: "2026-06"       # the bib entry has no month
+    areas: [care]
+  sim_words_2026:
+    areas: [care]
+  shi_towards_2026:
+    areas: [care, multimodal]
+  tran_dronaquatics_2026:
+    areas: [multimodal]
+  tan_blend-vis_2026:
+    areas: [multimodal, responsible-ai]
+  shi_talksketch_2026:
+    areas: [multimodal]
+  ryan_humor_2025:
+    areas: [multimodal, responsible-ai]
+  "10.2312:pg.20251299":
+    areas: [multimodal]
+  xiao_toxicloakcn_2024:
+    areas: [responsible-ai]
+  wang_evaluating_2023:
+    areas: [responsible-ai]
+  awal_muscat_2022:
+    areas: [responsible-ai]
+  sim_is_2025:
+    areas: [care]
+  lim_sword_2025:
+    areas: [responsible-ai]
+  sim_acts_2026:
+    areas: [care]
+  shi_when_2026:
+    areas: [multimodal]
+  sim_im_2026:
+    areas: [care]
+  teng_foreign_2026:
+    areas: [care]
+  shi_taxonomy_2026:
+    areas: [multimodal]
+  lim_communication_2025:
+    areas: [responsible-ai]
+  shi_towards_2025:
+    areas: [care, multimodal]
+  cheng_infotrace_2025:
+    areas: [responsible-ai]
+  sim_towards_2024:
+    areas: [care]
+  tran_analyzing_2024:
+    areas: [multimodal]
+  ng_sghatecheck_2024:
+    areas: [responsible-ai]
+  hee_brinjal_2024:
+    areas: [responsible-ai]
+  nurhadi_designing_2021:
+    areas: [care]
+  sim_i_2025:
+    areas: [care]
+  shi_exploring_2025:
+    areas: [care]
 
 extra_entries:
   - year: "2016"
-    line: >-
-      1. **Choo, K.T.W.**, Roy, Q. and Davis, R.C. 2016.
-      [Enabling multi-device interaction on the go in the MAGI project](/files/choo2016.pdf).
-      CHI 2016 Workshop on Interacting with Multi-Device ecologies "in the wild" (2016).
+    type: extended
+    title: Enabling multi-device interaction on the go in the MAGI project
+    authors: "**Choo, K.T.W.**, Roy, Q. and Davis, R.C."
+    venue: CHI 2016 Workshop on Interacting with Multi-Device ecologies "in the wild" (2016)
+    links: [{label: paper, url: /files/choo2016.pdf}]
   - year: "2016"
-    line: >-
-      1. Tran, V.H., **Choo, K.T.W.**, Lee, Y., Davis, R.C. and Misra, A. 2016.
-      [MAGI: Enabling multi-device gestural applications](https://doi.org/10.1109/PERCOMW.2016.7457168).
-      2016 IEEE International Conference on Pervasive Computing and Communication Workshops, PerCom Workshops 2016 (2016).
+    type: extended
+    title: "MAGI: Enabling multi-device gestural applications"
+    authors: "Tran, V.H., **Choo, K.T.W.**, Lee, Y., Davis, R.C. and Misra, A."
+    venue: 2016 IEEE International Conference on Pervasive Computing and Communication Workshops, PerCom Workshops 2016 (2016)
+    links: [{label: paper, url: "https://doi.org/10.1109/PERCOMW.2016.7457168"}]
   - year: "2014"
-    line: >-
-      1. Davis, R.C. and **Choo, K.T.W.** 2014.
-      [PlaySketch: Turning Animation Sketches Into Game Logic](/files/davis&choo2014.pdf).
-      IUI 2014 Workshop on Sketch: Pen and Touch Recognition (2014).
+    type: extended
+    title: "PlaySketch: Turning Animation Sketches Into Game Logic"
+    authors: "Davis, R.C. and **Choo, K.T.W.**"
+    venue: "IUI 2014 Workshop on Sketch: Pen and Touch Recognition (2014)"
+    links: [{label: paper, url: "/files/davis&choo2014.pdf"}]
   - year: "2010"
-    line: >-
-      1. Tan, A.L.S., Helander, M., **Choo, K.T.W.**, Soh, B.K. 2010.
-      [Cognitive Task Analysus for Maritime Collisions](/files/tan2010.pdf).
-      3rd International Conference on Applied Human Factors and Ergonomics (AHFE '10).
+    type: conference
+    title: Cognitive Task Analysus for Maritime Collisions
+    authors: "Tan, A.L.S., Helander, M., **Choo, K.T.W.**, Soh, B.K."
+    venue: 3rd International Conference on Applied Human Factors and Ergonomics (AHFE '10)
+    links: [{label: paper, url: /files/tan2010.pdf}]
   - year: "2010"
-    line: >-
-      1. Yu, S., Tan, A. L. S., Chen, A. J., **Choo, K.T.W.**, Soh, B. K. 2010.
-      [Recursive thinking in adversarial decision making: A naturalistic study](/files/soh2010.pdf).
-      (Multidisciplinary Decision Science Symposium 2010)
+    type: extended
+    title: "Recursive thinking in adversarial decision making: A naturalistic study"
+    authors: "Yu, S., Tan, A. L. S., Chen, A. J., **Choo, K.T.W.**, Soh, B.K."
+    venue: Multidisciplinary Decision Science Symposium 2010
+    links: [{label: paper, url: /files/soh2010.pdf}]
   - year: "2005"
-    line: >-
-      1. Pan, F., **Choo, K.T.W.**, Le, T. M. 2005.
-      [Fast Rate-Distortion Optimization in H.264/AVC Video Coding](http://link.springer.com/chapter/10.1007/11553939_62).
-      Knowledge-Based Intelligent Information and Engineering Systems (Vol. 3683, pp. 433-441).
+    type: conference
+    title: Fast Rate-Distortion Optimization in H.264/AVC Video Coding
+    authors: "Pan, F., **Choo, K.T.W.**, Le, T. M."
+    venue: "Knowledge-Based Intelligent Information and Engineering Systems (Vol. 3683, pp. 433-441)"
+    links: [{label: paper, url: "http://link.springer.com/chapter/10.1007/11553939_62"}]
