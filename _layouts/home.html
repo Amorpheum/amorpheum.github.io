@@ -2,6 +2,28 @@
 layout: default
 ---
 {%- assign areas = site.data.areas -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.author.name | jsonify }},
+  "url": {{ '/' | absolute_url | jsonify }},
+  "image": {{ '/images/kennychoo.png' | absolute_url | jsonify }},
+  "description": {{ site.author.bio | jsonify }},
+  "jobTitle": "Assistant Professor",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Singapore University of Technology and Design",
+    "url": "https://www.sutd.edu.sg/"
+  },
+  "sameAs": [
+    {{ site.author.googlescholar | jsonify }},
+    {{ site.author.orcid | jsonify }},
+    "https://github.com/{{ site.author.github }}",
+    "https://www.cailab.info"
+  ]
+}
+</script>
 <header class="hero-person" id="top">
   <div class="container hero-person__inner">
     <div class="hero-person__figure">
@@ -41,6 +63,23 @@ layout: default
     </ul>
   </div>
 </section>
+
+{%- assign picks = site.data.selected_pubs -%}
+{%- if picks.size > 0 %}
+<section class="section" id="publications">
+  <div class="container">
+    <div class="section-header">
+      <h2>Selected publications</h2>
+      <a class="section-header__link" href="{{ '/publications/' | relative_url }}">All publications</a>
+    </div>
+    <ol class="pub-list">
+      {%- for pub in picks %}
+      <li>{{ pub.citation | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+{%- endif %}
 
 <section class="section" id="talks">
   <div class="container">
