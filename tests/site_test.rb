@@ -120,6 +120,23 @@ class PublicContentTest < Minitest::Test
   end
 end
 
+# The lab list and the CV bib are kept separately; they once disagreed on a paper's year (InfoTrace, Gaze Patterns).
+class PublicationYearsAgreeWithLabTest < Minitest::Test
+  def test_every_paper_prints_the_year_the_lab_site_gives_it
+    lab_file = File.join(LAB, "_data/publications.yml")
+    skip "sibling cailab-website not present" unless File.exist?(lab_file)
+    squash = ->(str) { CGI.unescapeHTML(str.gsub(/<[^>]+>/, " ")).downcase.gsub(/[^a-z0-9]/, "") }
+    items = html_of("/publications/")[%r{<ol>.*?</ol>}m].scan(%r{<li>(.*?)</li>}m).flatten.map do |li|
+      [squash.call(li[%r{<a [^>]*>(.*?)</a>}m, 1].to_s), li[/ (\d{4})\. /, 1].to_i]
+    end
+    mismatches = YAML.safe_load(File.read(lab_file)).filter_map do |paper|
+      printed = items.find { |title, _| title == squash.call(paper["title"]) }&.last
+      "#{paper["title"]}: lab #{paper["year"]}, here #{printed}" if printed && printed != paper["year"].to_i
+    end
+    assert_empty mismatches, "year differs between the lab site and the CV bib (fix the bib, then bin/sync-publications)"
+  end
+end
+
 class EmailTest < Minitest::Test
   # The address may sit in a mailto: link, never as visible text, and no other address may appear.
   def test_address_is_only_ever_inside_a_mailto_link

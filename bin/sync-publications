@@ -1,0 +1,17 @@
+#!/bin/sh
+# Bring the site in step with the CV: regenerate _pages/publications.md and _data/selected_pubs.yml from
+# personal/cv/publications.bib, then show what changed. Run it after editing the bib, then review the diff,
+# run bin/check, preview, and commit. Pushing stays a separate, deliberate step.
+# Extra arguments pass through (a different bib path as the first one).
+set -eu
+cd "$(dirname "$0")/.."
+
+uv run --with 'bibtexparser<2' --with pyyaml tools/render_publications.py "$@"
+
+echo
+git --no-pager diff --stat -- _pages/publications.md _data/selected_pubs.yml
+if git diff --quiet -- _pages/publications.md _data/selected_pubs.yml; then
+  echo "No change: the site already matches the bib."
+else
+  echo "Review with: git diff _pages/publications.md _data/selected_pubs.yml"
+fi

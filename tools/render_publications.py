@@ -271,23 +271,28 @@ def render_selected_yaml(items: list[dict]) -> str:
     return SELECTED_HEADER + yaml.safe_dump(items, sort_keys=False, allow_unicode=True, width=1000)
 
 
+def render_all(bib_path: Path) -> tuple[str, str, int, int]:
+    """(publications page text, selected_pubs.yml text, confidential entries dropped from the page,
+    confidential entries dropped from the selected list). Pure: writes nothing."""
+    with open(bib_path) as f:
+        db = bibtexparser.load(f)
+    extras = load_extras()
+    body, skipped_confidential = build_body(db.entries, extras)
+    selected, dropped_selected = build_selected(db.entries, extras)
+    return HEADER + body, render_selected_yaml(selected), skipped_confidential, dropped_selected
+
+
 def main():
     bib_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_BIB
     if not bib_path.exists():
         sys.exit(f"bib not found: {bib_path}")
 
-    with open(bib_path) as f:
-        db = bibtexparser.load(f)
-
-    extras = load_extras()
-    body, skipped_confidential = build_body(db.entries, extras)
-    OUTPUT_PATH.write_text(HEADER + body)
-    print(f"Wrote {body.count(chr(10))} entries to {OUTPUT_PATH}"
+    page, selected_yaml, skipped_confidential, dropped = render_all(bib_path)
+    OUTPUT_PATH.write_text(page)
+    SELECTED_PATH.write_text(selected_yaml)
+    print(f"Wrote {page.count(chr(10)) - HEADER.count(chr(10))} entries to {OUTPUT_PATH}"
           f" ({skipped_confidential} confidential entries excluded)")
-
-    selected, dropped = build_selected(db.entries, extras)
-    SELECTED_PATH.write_text(render_selected_yaml(selected))
-    print(f"Wrote {len(selected)} selected entries to {SELECTED_PATH}")
+    print(f"Wrote {selected_yaml.count('- key:')} selected entries to {SELECTED_PATH}")
     if dropped:
         print(f"WARNING: {dropped} entries keyworded `selected` are confidential and were left out;"
               " remove `selected` from them in the bib.", file=sys.stderr)
