@@ -44,22 +44,7 @@ redirect_from:
 See the full, regularly-updated [Publications](/publications/) page.
 
 ## Teaching
-### Assistant Professor, Singapore University of Technology and Design
-- [60.005 HCI and AI](/teaching/hciandai/) (Course Designer and Lead, 2022-present)
-- [50.006 User Interface Design and Implementation](/teaching/userinterfacedesign/) (Course Lead, 2021, 2025-present)
-- 01.400/401 Capstone (2021-present)
-- [10.014 Computational Thinking for Design](/teaching/compthinking/) (2020-present)
-- [50.002 Computation Structures](/teaching/compstruct/) (2019-2023)
-- 10.020 Data-Driven World (2021-2022)
-- [10.009 Digital World](/teaching/digitalworld/) - An Introduction to Computational Thinking (2020)
-- Introduction to Human-Centred AI, GEO/FACT (2024-present)
-
-### Lecturer, Singapore Management University
-- [IS113 Web Application Development](/teaching/webappdev/) (Guest lecture, 2019). Front end styling and interaction, hybrid app development.
-
-### Graduate Instructor / Teaching Assistant, Singapore Management University
-- [IS306 Interaction Design and Prototyping](/teaching/interactiondesign/) (3 terms, 2014-2017)
-- [IS416 Mobile and Pervasive Technology and Applications](/teaching/mobilepervasivetech/) (1 term, 2015)
+Courses taught and graduate student advising are on the [Teaching](/teaching/) page.
 
 ## Service
 See the full [Service](/service/) page for programme committees and reviewing. Selected departmental service:

@@ -102,5 +102,53 @@ class ConfidentialityTest(unittest.TestCase):
             self.assertNotIn(f"Title {secret}", body)
 
 
+class SelectedTest(unittest.TestCase):
+    """The home page shows the bib's `selected` entries (the same ones the 1-page CV uses)."""
+
+    def keys(self, entries, extras=None):
+        items, _ = rp.build_selected(entries, extras or {})
+        return [i["citation"].split("[Title ")[1].split("]")[0] for i in items]
+
+    def test_only_entries_keyworded_selected_are_chosen(self):
+        entries = [entry("a", 2026, "May", keywords="conference, selected"), entry("b", 2026, "June"),
+                   entry("c", 2025, "May", keywords="journal, Selected")]
+        self.assertEqual(self.keys(entries), ["a", "c"])
+
+    def test_keyword_must_match_exactly(self):
+        entries = [entry("x", 2026, "May", keywords="preselected"), entry("y", 2026, "May", keywords="unselected, selected-ish")]
+        self.assertEqual(self.keys(entries), [])
+
+    def test_newest_first_like_the_publications_page(self):
+        entries = [entry("old", 2019, "May", keywords="selected"), entry("new", 2026, "April", keywords="selected"),
+                   entry("mid", 2023, "August", keywords="selected")]
+        self.assertEqual(self.keys(entries), ["new", "mid", "old"])
+
+    def test_confidential_work_is_never_selected(self):
+        # the second path to a public page must go through the same filter as the publications page
+        entries = [entry("ok", 2026, "May", keywords="selected"),
+                   entry("kw", 2026, "June", keywords="inreview, selected"),
+                   entry("note", 2026, "July", keywords="selected", note="Under review at CHI")]
+        items, dropped = rp.build_selected(entries, {})
+        self.assertEqual([i["citation"].split("[Title ")[1].split("]")[0] for i in items], ["ok"])
+        self.assertEqual(dropped, 2)
+        self.assertNotIn("Title kw", str(items))
+        self.assertNotIn("Title note", str(items))
+
+    def test_each_selected_citation_is_a_line_of_the_publications_page(self):
+        entries = [entry("a", 2026, "May", keywords="selected", note="{\\textbf{Honourable Mention}}"),
+                   entry("b", 2025, "May")]
+        body, _ = rp.build_body(entries, {})
+        items, _ = rp.build_selected(entries, {})
+        self.assertEqual(len(items), 1)
+        self.assertIn("1. " + items[0]["citation"], body.splitlines())
+
+    def test_yaml_output_round_trips(self):
+        import yaml
+        items, _ = rp.build_selected([entry("a", 2026, "May", keywords="selected")], {})
+        loaded = yaml.safe_load(rp.render_selected_yaml(items))
+        self.assertEqual(loaded, items)
+        self.assertEqual(set(loaded[0]), {"key", "year", "citation"})
+
+
 if __name__ == "__main__":
     unittest.main()
