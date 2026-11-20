@@ -202,6 +202,22 @@ svg line,svg path{stroke:var(--c);fill:none}
 /* nav: a text brand instead of the lab's logo */
 .nav__brand{font-size:1.375rem;letter-spacing:-.01em}
 
+/* nav on narrow screens. The lab stylesheet wraps the links onto their own rows below 900px. Here brand and links
+   share one row down to 721px, and below that the links sit behind a Menu button (assets/js/nav.js sets .is-js;
+   without it the links stay visible and wrap as in the lab stylesheet). Brand 126 + links 436 + gaps need ~634px. */
+.nav__toggle{display:none}
+@media (max-width:900px){
+ .nav__links{width:auto;margin-left:auto}
+}
+@media (max-width:720px){
+ .nav.is-js .nav__inner{row-gap:0}
+ .nav.is-js .nav__toggle{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap);margin-left:auto;padding:0 var(--space-5);border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);background:transparent;color:var(--text);font:600 var(--fs-body)/1 var(--font-body);cursor:pointer;transition:background .15s,border-color .15s}
+ .nav.is-js .nav__toggle:hover,.nav.is-js.is-open .nav__toggle{background:var(--surface-2);border-color:var(--text)}
+ .nav.is-js .nav__links{display:none;flex-direction:column;flex-wrap:nowrap;gap:0;order:3;width:calc(100% + 2*var(--space-4));margin-inline:calc(-1*var(--space-4));padding:var(--space-2) 0 var(--space-3);border-top:1px solid var(--line)}
+ .nav.is-js.is-open .nav__links{display:flex}
+ .nav.is-js .nav__links a{display:flex;width:100%;border-radius:var(--radius-m)}
+}
+
 /* footer profile links */
 .footer__links{align-items:center}
 .cta-banner--block .btn{justify-self:start}

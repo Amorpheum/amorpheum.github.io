@@ -334,6 +334,39 @@ class CvPageTest < Minitest::Test
   end
 end
 
+class NavTest < Minitest::Test
+  PAGES = %w[/ /publications/ /talks/ /teaching/ /service/ /cv/].freeze
+
+  # On a phone the links collapse behind a Menu button. The button starts `hidden` and nav.js reveals it, so a
+  # visitor without JS gets the plain links and never a dead button.
+  def test_every_page_has_a_hidden_menu_button_wired_to_the_link_list
+    PAGES.each do |page|
+      html = html_of(page)
+      button = html[/<button[^>]*class="nav__toggle"[^>]*>/]
+      refute_nil button, "no menu button on #{page}"
+      assert_match(/aria-expanded="false"/, button, "closed at load on #{page}")
+      assert_match(/\bhidden\b/, button, "button must start hidden on #{page}")
+      target = button[/aria-controls="([^"]+)"/, 1]
+      refute_nil target, "button controls nothing on #{page}"
+      assert_match(/<ul[^>]*id="#{Regexp.escape(target)}"/, html, "no list with id #{target} on #{page}")
+    end
+  end
+
+  def test_every_page_loads_the_menu_script_and_it_is_published
+    assert File.exist?(File.join(BUILD, "assets/js/nav.js")), "nav.js not published"
+    PAGES.each { |page| assert_has html_of(page), 'src="/assets/js/nav.js"', "nav.js on #{page}" }
+  end
+
+  def test_links_stay_in_the_markup_for_visitors_without_js
+    expected = YAML.safe_load(read("_data/navigation.yml"))["main"].map { |i| i["url"] }
+    PAGES.each do |page|
+      list = html_of(page)[%r{<ul[^>]*id="nav-links".*?</ul>}m]
+      refute_nil list, "no link list on #{page}"
+      assert_equal expected, list.scan(/<a href="([^"]+)"/).flatten, "nav links on #{page}"
+    end
+  end
+end
+
 class PagesTest < Minitest::Test
   PAGES = %w[/ /publications/ /talks/ /teaching/ /teaching/teaching-statement/ /teaching/hciandai/ /cv/ /service/
              /talks/2026-09-23-nie-parent-child-ai].freeze

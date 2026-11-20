@@ -1,7 +1,8 @@
 <nav class="nav" aria-label="Main">
   <div class="container nav__inner">
     <a class="nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <ul class="nav__links">
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" hidden>Menu</button>
+    <ul class="nav__links" id="nav-links">
       {% for item in site.data.navigation.main %}
       <li><a href="{{ item.url | relative_url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
       {% endfor %}
