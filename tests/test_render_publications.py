@@ -150,5 +150,20 @@ class SelectedTest(unittest.TestCase):
         self.assertEqual(set(loaded[0]), {"key", "year", "citation"})
 
 
+class SiteInStepWithBibTest(unittest.TestCase):
+    """The CV's publications.bib is the source of truth; the generated site files must match it.
+
+    Skipped when the bib is not on this machine. When it fails, run bin/sync-publications.
+    """
+
+    def test_generated_files_match_what_the_bib_produces_now(self):
+        if not rp.DEFAULT_BIB.exists():
+            self.skipTest(f"{rp.DEFAULT_BIB} not present")
+        page, selected, _, _ = rp.render_all(rp.DEFAULT_BIB)
+        hint = "out of step with the CV bib: run bin/sync-publications and review the diff"
+        self.assertEqual(rp.OUTPUT_PATH.read_text(), page, f"_pages/publications.md {hint}")
+        self.assertEqual(rp.SELECTED_PATH.read_text(), selected, f"_data/selected_pubs.yml {hint}")
+
+
 if __name__ == "__main__":
     unittest.main()
