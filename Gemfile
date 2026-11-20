@@ -1,26 +1,22 @@
 source "https://rubygems.org"
 
-# Hello! This is where you manage which Jekyll version is used to run.
-# When you want to use a different version, change it below, save the
-# file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
-#
-#     bundle exec jekyll serve
-#
-# This will help ensure the proper Jekyll version is running.
-# Happy Jekylling!
+# Local preview and the test build. Production is GitHub's legacy Pages build, which uses its own pinned gem set and
+# ignores this file and Gemfile.lock. The versions below are the ones github-pages 232 pins, so a local build
+# predicts it. The `github-pages` metagem itself is deliberately not used: it pulls in ~100 gems (nokogiri,
+# activesupport, rubyzip, ...) that never run for this site but raise Dependabot alerts on a lockfile nothing deploys.
+gem "jekyll", "3.10.0"
+gem "kramdown", "2.4.0"
+gem "kramdown-parser-gfm", "1.1.0" # GFM input, set in _config.yml
+gem "rouge", "3.30.0"
+gem "liquid", "4.0.4"
 
-gem "github-pages", group: :jekyll_plugins
+group :jekyll_plugins do
+  gem "jekyll-feed", "0.17.0"
+  gem "jekyll-redirect-from", "0.16.0"
+  gem "jekyll-sitemap", "1.4.0"
+end
 
-# If you want to use Jekyll native, uncomment the line below.
-# To upgrade, run `bundle update`.
-
-# gem "jekyll"
-
-gem "wdm", "~> 0.1.0" if Gem.win_platform?
-
-# Ruby 3.4+/4.x removed these from default gems; jekyll 3.9 / github-pages
-# still expect them at runtime. Added for local dev only (not part of the
-# server-side legacy Pages build, which pins its own ruby).
+# Ruby 3.4+/4.x removed these from default gems; jekyll 3.10 still expects them at runtime.
 gem "csv"
 gem "webrick"
 gem "bigdecimal"
@@ -28,10 +24,3 @@ gem "base64"
 gem "logger"
 gem "ostruct"
 gem "fiddle"
-
-# If you have any plugins, put them here!
-group :jekyll_plugins do
-  # gem "jekyll-archives"
-  gem "jekyll-feed"
-  gem 'jekyll-sitemap'
-end
