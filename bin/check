@@ -11,5 +11,8 @@ esac
 
 ruby -Itests -e 'Dir["tests/*_test.rb"].sort.each { |f| require File.expand_path(f) }'
 
+# The phone Menu button (assets/js/nav.js). bun's built-in runner, no extra dependency.
+bun test tests/nav.test.js
+
 # The publications generator: ordering and the confidentiality filter. bibtexparser must stay below 2.
 uv run --with 'bibtexparser<2' --with pyyaml python -m unittest discover -s tests -p 'test_*.py'

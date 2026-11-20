@@ -9,17 +9,8 @@ files/choo2016.pdf
 files/davis&choo2014.pdf
 files/soh2010.pdf
 files/tan2010.pdf
-images/browserconfig.xml
 images/kennychoo.png
-images/manifest.json
-images/mstile-144x144.png
-images/mstile-150x150.png
-images/mstile-310x150.png
-images/mstile-310x310.png
-images/mstile-70x70.png
 images/og-image.png
-images/safari-pinned-tab.svg
-images/site-logo.png
 index.html
 page-archive/index.html
 publications/index.html
@@ -28,7 +19,6 @@ robots.txt
 service/index.html
 sitemap.xml
 sitemap/index.html
-talkmap.html
 talks/2024-11-29-singhealth-apphc.html
 talks/2025-09-29-sgo-future-of-aging.html
 talks/2026-02-06-cityu-scm-designing-for-we.html
@@ -50,4 +40,3 @@ teaching/mobilepervasivetech/index.html
 teaching/teaching-statement/index.html
 teaching/userinterfacedesign/index.html
 teaching/webappdev/index.html
-terms/index.html
