@@ -191,54 +191,8 @@ class RecordTest(unittest.TestCase):
         self.assertEqual(yaml.safe_load(rp.render_publications_yaml(recs)), recs)
 
 
-class SelectedTest(unittest.TestCase):
-    """The home page shows the bib's `selected` entries (the same ones the 1-page CV uses)."""
-
-    def keys(self, entries, extras=None):
-        items, _ = rp.build_selected(entries, extras or {})
-        return [i["citation"].split("[Title ")[1].split("]")[0] for i in items]
-
-    def test_only_entries_keyworded_selected_are_chosen(self):
-        entries = [entry("a", 2026, "May", keywords="conference, selected"), entry("b", 2026, "June"),
-                   entry("c", 2025, "May", keywords="journal, Selected")]
-        self.assertEqual(self.keys(entries), ["a", "c"])
-
-    def test_keyword_must_match_exactly(self):
-        entries = [entry("x", 2026, "May", keywords="preselected"), entry("y", 2026, "May", keywords="unselected, selected-ish")]
-        self.assertEqual(self.keys(entries), [])
-
-    def test_newest_first_like_the_publications_page(self):
-        entries = [entry("old", 2019, "May", keywords="selected"), entry("new", 2026, "April", keywords="selected"),
-                   entry("mid", 2023, "August", keywords="selected")]
-        self.assertEqual(self.keys(entries), ["new", "mid", "old"])
-
-    def test_confidential_work_is_never_selected(self):
-        # the second path to a public page must go through the same filter as the publications page
-        entries = [entry("ok", 2026, "May", keywords="selected"),
-                   entry("kw", 2026, "June", keywords="inreview, selected"),
-                   entry("note", 2026, "July", keywords="selected", note="Under review at CHI")]
-        items, dropped = rp.build_selected(entries, {})
-        self.assertEqual([i["citation"].split("[Title ")[1].split("]")[0] for i in items], ["ok"])
-        self.assertEqual(dropped, 2)
-        self.assertNotIn("Title kw", str(items))
-        self.assertNotIn("Title note", str(items))
-
-    def test_each_selected_paper_is_on_the_publications_page(self):
-        entries = [entry("a", 2026, "May", keywords="conference, selected"), entry("b", 2025, "May")]
-        items, _ = rp.build_selected(entries, {})
-        self.assertEqual([i["key"] for i in items], ["a"])
-        self.assertTrue({i["key"] for i in items} <= set(order(entries)))
-
-    def test_yaml_output_round_trips(self):
-        import yaml
-        items, _ = rp.build_selected([entry("a", 2026, "May", keywords="selected")], {})
-        loaded = yaml.safe_load(rp.render_selected_yaml(items))
-        self.assertEqual(loaded, items)
-        self.assertEqual(set(loaded[0]), {"key", "year", "citation"})
-
-
 class SiteInStepWithBibTest(unittest.TestCase):
-    """The CV's publications.bib is the source of truth; the generated site files must match it.
+    """The CV's publications.bib is the source of truth; the generated site file must match it.
 
     Skipped when the bib is not on this machine. When it fails, run bin/sync-publications.
     """
@@ -246,10 +200,9 @@ class SiteInStepWithBibTest(unittest.TestCase):
     def test_generated_files_match_what_the_bib_produces_now(self):
         if not rp.DEFAULT_BIB.exists():
             self.skipTest(f"{rp.DEFAULT_BIB} not present")
-        publications, selected, _, _ = rp.render_all(rp.DEFAULT_BIB)
+        publications, _ = rp.render_all(rp.DEFAULT_BIB)
         hint = "out of step with the CV bib: run bin/sync-publications and review the diff"
         self.assertEqual(rp.PUBLICATIONS_PATH.read_text(), publications, f"_data/publications.yml {hint}")
-        self.assertEqual(rp.SELECTED_PATH.read_text(), selected, f"_data/selected_pubs.yml {hint}")
 
 
 if __name__ == "__main__":

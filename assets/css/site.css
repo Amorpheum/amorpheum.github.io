@@ -319,14 +319,6 @@ svg line,svg path{stroke:var(--c);fill:none}
 .prose p>em:only-child{color:var(--text-muted);font-style:normal;font-family:var(--font-mono);font-size:var(--fs-label)}
 .prose hr{border:0;border-top:1px solid var(--line);width:100%}
 .prose a{text-underline-offset:3px}
-/* the home page's selected papers: one item per paper, shown as rows in a panel */
-.pub-list{list-style:none;padding:var(--space-2) var(--space-5);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-l)}
-.pub-list li{padding-block:var(--space-4);font-size:var(--fs-small);line-height:1.5;color:var(--text-muted)}
-.pub-list li+li{border-top:1px solid var(--line)}
-.pub-list li strong{color:var(--text);font-weight:600}
-.pub-list li a{color:var(--text);font:600 1.0625rem/1.35 var(--font-display)}
-.pub-list{max-width:900px;margin:0}
-@media (max-width:900px){.pub-list{padding-inline:var(--space-4)}}
 
 /* nav: a text brand instead of the lab's logo */
 .nav__brand{font-size:1.375rem;letter-spacing:-.01em}
