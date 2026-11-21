@@ -431,35 +431,17 @@ class StructuredDataTest < Minitest::Test
   end
 end
 
-class SelectedPublicationsTest < Minitest::Test
-  def squash(str) = CGI.unescapeHTML(str.gsub(/<[^>]+>/, " ")).downcase.gsub(/[^a-z0-9]/, "")
-  def selected = YAML.safe_load(read("_data/selected_pubs.yml"))
-
-  def test_home_lists_each_selected_paper_and_links_to_all_publications
+class HomeHasNoPublicationsListTest < Minitest::Test
+  # The papers live on /publications/ alone; the home page links there from the nav only.
+  def test_home_has_no_selected_publications_section
     html = html_of("/")
-    assert_has html, 'href="/publications/"', "link to all publications"
-    refute_empty selected
-    page = squash(html)
-    selected.each do |s|
-      title = s["citation"][/\[(.*?)\]\(/m, 1]
-      assert page.include?(squash(title)), "selected paper missing from home: #{title}"
-    end
-  end
-
-  def test_every_selected_paper_is_also_on_the_publications_page
-    page = squash(publication_rows.join)
-    selected.each { |s| assert page.include?(squash(s["citation"][/\[(.*?)\]\(/m, 1])), "not on publications page: #{s["key"]}" }
+    refute html.match?(/<section[^>]*id="publications"/), "publications section on the home page"
+    refute_has text_of("/"), "Selected publications", "heading"
+    refute_has html, "pub-list", "list markup"
   end
 
   def test_home_shows_no_work_under_review
     refute_match(/under review|under submission|in review/i, text_of("/"))
-  end
-
-  # Scoped to the section: the research-area text on the same page already mentions the awards.
-  def test_the_award_papers_are_visible_in_the_publications_section
-    section = html_of("/")[%r{<section[^>]*id="publications".*?</section>}m]
-    refute_nil section, "no publications section on home"
-    assert_has section, "Honourable Mention", "award note"
   end
 end
 

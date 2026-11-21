@@ -64,23 +64,6 @@ layout: default
   </div>
 </section>
 
-{%- assign picks = site.data.selected_pubs -%}
-{%- if picks.size > 0 %}
-<section class="section" id="publications">
-  <div class="container">
-    <div class="section-header">
-      <h2>Selected publications</h2>
-      <a class="section-header__link" href="{{ '/publications/' | relative_url }}">All publications</a>
-    </div>
-    <ol class="pub-list">
-      {%- for pub in picks %}
-      <li>{{ pub.citation | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
-      {%- endfor %}
-    </ol>
-  </div>
-</section>
-{%- endif %}
-
 <section class="section" id="talks">
   <div class="container">
     <div class="section-header">
