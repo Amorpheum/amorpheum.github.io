@@ -23,7 +23,7 @@ redirect_from:
 
 ### Reviewing
 - CSCW 2019-2022
-- CHI 2019-2022
+- CHI 2019-present
 - IMWUT/UbiComp 2018-2020
 - MobiSys 2018
 - Pervasive and Mobile Computing 2018
