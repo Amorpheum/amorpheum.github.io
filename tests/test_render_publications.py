@@ -113,6 +113,20 @@ class ConfidentialityTest(unittest.TestCase):
             self.assertNotIn(f"Title {secret}", str(recs))
         self.assertNotIn("Title kw", rp.render_publications_yaml(recs))
 
+    def test_working_keyword_never_renders_even_with_no_note(self):
+        # `working` entries (unpublished, not submitted) carry no "under review" note, so the keyword is the only gate
+        entries = [
+            entry("public", 2026, "May"),
+            entry("w1", 2026, "June", keywords="working"),
+            entry("w2", 2026, "June", keywords="foo, Working"),
+        ]
+        recs, skipped = rp.build_records(entries, {}, AREAS, TYPES)
+        self.assertEqual(order(entries), ["public"])
+        self.assertEqual(skipped, 2)
+        for secret in ("w1", "w2"):
+            self.assertNotIn(f"Title {secret}", str(recs))
+            self.assertNotIn(f"Title {secret}", rp.render_publications_yaml(recs))
+
 
 class RecordTest(unittest.TestCase):
     """What each paper becomes in _data/publications.yml, which the page template renders."""
@@ -140,6 +154,7 @@ class RecordTest(unittest.TestCase):
     def test_a_confidential_entry_needs_no_type(self):
         # it is dropped before anything is asked of it
         self.assertEqual(records([entry("k", 2026, keywords="inreview")]), [])
+        self.assertEqual(records([entry("k", 2026, keywords="working")]), [])
 
     def test_areas_come_from_the_sidecar_and_default_to_other(self):
         extras = {"by_key": {"a": {"areas": ["care", "multimodal"]}}}

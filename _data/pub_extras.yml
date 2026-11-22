@@ -1,9 +1,8 @@
 # Sidecar for _data/publications.yml generation (tools/render_publications.py).
 #
-# publications.bib (personal/cv/) only goes back to 2018. These pre-2018
-# entries were already public on the site and are NOT in the bib, so they
-# are hand-carried here rather than silently dropped on regeneration.
-# If they get added to the CV bib later, delete them from here.
+# publications.bib (personal/cv/) is the single source of truth for every
+# publication, including the pre-2018 and DSO-era papers (moved into the bib
+# 2026-11-21; their local PDFs are kept below as `pdf` fallbacks).
 #
 # `by_key`: extra links (video/dataset/local pdf) keyed by bib entry ID,
 #           merged onto a bib-sourced entry. `date` (YYYY[-MM[-DD]]) orders
@@ -15,10 +14,26 @@
 #           and the Research area filter; none means "Other". The CAILab site's research.yml is
 #           canonical for these; a test compares the two by title when that repo sits beside this one.
 # `extra_entries`: whole entries not present in the bib at all, as records: year, type (one of
-#           publication_types.yml; the bib has no keyword for these six, so the type is a judgement),
-#           title, authors (Markdown), venue, links, and optionally areas.
+#           publication_types.yml), title, authors (Markdown), venue, links, and optionally areas.
+#           Currently empty: everything is in the bib.
 
 by_key:
+  choo_enabling_2016:
+    pdf: /files/choo2016.pdf
+  davis_playsketch_2014:
+    pdf: "/files/davis&choo2014.pdf"
+  tan_cognitive_2010:
+    pdf: /files/tan2010.pdf
+  yu_recursive_2010:
+    pdf: /files/soh2010.pdf
+  tan_veiled-sh_2026:
+    areas: [care, responsible-ai]
+  shi_duosketch_2026:
+    areas: [multimodal]
+  sim_clayflect_2026:
+    areas: [multimodal]
+  shi_commsketch_2026:
+    areas: [multimodal]
   choo_examining_2019:
     video: https://www.youtube.com/watch?v=oDKQiruCNsg
   tharatipyakul_pose_2020:
@@ -30,7 +45,6 @@ by_key:
     date: "2025-03"       # earliest public date per the CAILab list; the bib month is April
     areas: [care]
   sim_redistributing_2026:
-    date: "2026-06"       # the bib entry has no month
     areas: [care]
   sim_words_2026:
     areas: [care]
@@ -87,40 +101,4 @@ by_key:
   shi_exploring_2025:
     areas: [care]
 
-extra_entries:
-  - year: "2016"
-    type: extended
-    title: Enabling multi-device interaction on the go in the MAGI project
-    authors: "**Choo, K.T.W.**, Roy, Q. and Davis, R.C."
-    venue: CHI 2016 Workshop on Interacting with Multi-Device ecologies "in the wild" (2016)
-    links: [{label: paper, url: /files/choo2016.pdf}]
-  - year: "2016"
-    type: extended
-    title: "MAGI: Enabling multi-device gestural applications"
-    authors: "Tran, V.H., **Choo, K.T.W.**, Lee, Y., Davis, R.C. and Misra, A."
-    venue: 2016 IEEE International Conference on Pervasive Computing and Communication Workshops, PerCom Workshops 2016 (2016)
-    links: [{label: paper, url: "https://doi.org/10.1109/PERCOMW.2016.7457168"}]
-  - year: "2014"
-    type: extended
-    title: "PlaySketch: Turning Animation Sketches Into Game Logic"
-    authors: "Davis, R.C. and **Choo, K.T.W.**"
-    venue: "IUI 2014 Workshop on Sketch: Pen and Touch Recognition (2014)"
-    links: [{label: paper, url: "/files/davis&choo2014.pdf"}]
-  - year: "2010"
-    type: conference
-    title: Cognitive Task Analysus for Maritime Collisions
-    authors: "Tan, A.L.S., Helander, M., **Choo, K.T.W.**, Soh, B.K."
-    venue: 3rd International Conference on Applied Human Factors and Ergonomics (AHFE '10)
-    links: [{label: paper, url: /files/tan2010.pdf}]
-  - year: "2010"
-    type: extended
-    title: "Recursive thinking in adversarial decision making: A naturalistic study"
-    authors: "Yu, S., Tan, A. L. S., Chen, A. J., **Choo, K.T.W.**, Soh, B.K."
-    venue: Multidisciplinary Decision Science Symposium 2010
-    links: [{label: paper, url: /files/soh2010.pdf}]
-  - year: "2005"
-    type: conference
-    title: Fast Rate-Distortion Optimization in H.264/AVC Video Coding
-    authors: "Pan, F., **Choo, K.T.W.**, Le, T. M."
-    venue: "Knowledge-Based Intelligent Information and Engineering Systems (Vol. 3683, pp. 433-441)"
-    links: [{label: paper, url: "http://link.springer.com/chapter/10.1007/11553939_62"}]
+extra_entries: []
