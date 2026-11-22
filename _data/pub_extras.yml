@@ -13,6 +13,8 @@
 #           `areas` lists the paper's research areas (slugs in _data/areas.yml), for the area pills
 #           and the Research area filter; none means "Other". The CAILab site's research.yml is
 #           canonical for these; a test compares the two by title when that repo sits beside this one.
+#           The second area was `multimodal` until 2026-11-22, when it became `collaboration`
+#           (Human–AI Collaboration); the swimming and VR-modelling papers left the areas then.
 # `extra_entries`: whole entries not present in the bib at all, as records: year, type (one of
 #           publication_types.yml), title, authors (Markdown), venue, links, and optionally areas.
 #           Currently empty: everything is in the bib.
@@ -27,20 +29,20 @@ by_key:
   yu_recursive_2010:
     pdf: /files/soh2010.pdf
   tan_veiled-sh_2026:
-    areas: [care, responsible-ai]
+    areas: [responsible-ai]
   shi_duosketch_2026:
-    areas: [multimodal]
+    areas: [collaboration]
   sim_clayflect_2026:
-    areas: [multimodal]
+    areas: [collaboration]
   shi_commsketch_2026:
-    areas: [multimodal]
+    areas: [collaboration]
   choo_examining_2019:
     video: https://www.youtube.com/watch?v=oDKQiruCNsg
   tharatipyakul_pose_2020:
     video: https://www.youtube.com/watch?v=hLKF-EJuH4g
   shi_more_2026:
     date: "2026-03"       # earliest public date per the CAILab list; the bib month is April
-    areas: [care, multimodal]
+    areas: [care, collaboration]
   sim_envisioning_2025:
     date: "2025-03"       # earliest public date per the CAILab list; the bib month is April
     areas: [care]
@@ -49,17 +51,17 @@ by_key:
   sim_words_2026:
     areas: [care]
   shi_towards_2026:
-    areas: [care, multimodal]
-  tran_dronaquatics_2026:
-    areas: [multimodal]
+    areas: [care, collaboration]
   tan_blend-vis_2026:
-    areas: [multimodal, responsible-ai]
+    areas: [responsible-ai]
   shi_talksketch_2026:
-    areas: [multimodal]
+    areas: [collaboration]
+  noller_simulated_2025:
+    areas: [collaboration]
+  kurniawan_designing_2025:
+    areas: [collaboration]
   ryan_humor_2025:
-    areas: [multimodal, responsible-ai]
-  "10.2312:pg.20251299":
-    areas: [multimodal]
+    areas: [responsible-ai]
   xiao_toxicloakcn_2024:
     areas: [responsible-ai]
   wang_evaluating_2023:
@@ -73,23 +75,27 @@ by_key:
   sim_acts_2026:
     areas: [care]
   shi_when_2026:
-    areas: [multimodal]
+    areas: [collaboration]
   sim_im_2026:
     areas: [care]
   teng_foreign_2026:
     areas: [care]
   shi_taxonomy_2026:
-    areas: [multimodal]
+    areas: [collaboration]
   lim_communication_2025:
     areas: [responsible-ai]
   shi_towards_2025:
-    areas: [care, multimodal]
+    areas: [care, collaboration]
   cheng_infotrace_2025:
     areas: [responsible-ai]
+  gao_taxonomy_2024:
+    areas: [collaboration]
+  gao_coaicoder_2023:
+    areas: [collaboration]
+  gao_impact_2023:
+    areas: [collaboration]
   sim_towards_2024:
     areas: [care]
-  tran_analyzing_2024:
-    areas: [multimodal]
   ng_sghatecheck_2024:
     areas: [responsible-ai]
   hee_brinjal_2024:

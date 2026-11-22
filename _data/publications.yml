@@ -7,12 +7,11 @@
   year: 2026
   type: preprint
   title: 'VEILED-SH: Vulnerability Expression through Indirect Language Evaluation Dataset (Self-Harm)'
-  authors: Tan, L., Chua, K., Khoo, S., Kampman, O.P., Charmaine, L.R., Hoosainsah, H., Sim, K.Y.H., He, K., **Choo, K.T.W.** and Lee, R.K.
+  authors: Tan, L., Chua, K., Khoo, S., Kampman, O.P., Lim, R.C., Hoosainsah, H., Sim, K.Y.H., He, K., **Choo, K.T.W.** and Lee, R.K.
   venue: (2026)
   note: arXiv:2610.26190 [cs]
   award: false
   areas:
-  - care
   - responsible-ai
   links:
   - label: paper
@@ -26,7 +25,7 @@
   note: arXiv:2610.10249 [cs]
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.48550/arXiv.2610.10249
@@ -39,7 +38,7 @@
   note: arXiv:2610.08943 [cs]
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.48550/arXiv.2610.08943
@@ -78,7 +77,7 @@
   note: arXiv:2609.37813 [cs]
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.48550/arXiv.2609.37813
@@ -104,7 +103,7 @@
   note: ''
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3802974.3809463
@@ -126,8 +125,8 @@
   type: extended
   title: 'Redistributing Voice and Responsibility: AI in Relationship-Centred Care'
   authors: Sim, K.Y.H. and **Choo, K.T.W.**
-  venue: (2026)
-  note: arXiv:2606.00028 [cs]; provocation, CHI 2026 Workshop on Toward Relationship-Centered Care with AI
+  venue: CHI '26 Workshop on Toward Relationship-Centered Care with AI (2026)
+  note: Provocation
   award: false
   areas:
   - care
@@ -157,7 +156,7 @@
   award: true
   areas:
   - care
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3772318.3791267
@@ -183,7 +182,7 @@
   note: ''
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3772363.3798524
@@ -196,7 +195,7 @@
   note: ''
   award: false
   areas:
-  - multimodal
+  - other
   links:
   - label: paper
     url: https://openaccess.thecvf.com/content/WACV2026/html/Tran_Dronaquatics_Real-time_Swimming_Analytics_Using_Drone_Captured_Imagery_WACV_2026_paper.html
@@ -209,7 +208,6 @@
   note: ''
   award: false
   areas:
-  - multimodal
   - responsible-ai
   links:
   - label: paper
@@ -219,12 +217,12 @@
   type: extended
   title: 'More Than 1v1: Human-AI Alignment in Early Developmental Communities with Multimodal LLMs'
   authors: Shi, W. and **Choo, K.T.W.**
-  venue: (2026)
-  note: CHI '26 Workshop on Human-AI Interaction Alignment
+  venue: CHI '26 Workshop on Human-AI Interaction Alignment (2026)
+  note: ''
   award: false
   areas:
   - care
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.48550/arXiv.2603.07134
@@ -233,11 +231,11 @@
   type: extended
   title: 'TalkSketch: Multimodal Generative AI for Real-Time Sketch Ideation with Speech'
   authors: Shi, W., Upadhyay, S., Quek, G. and **Choo, K.T.W.**
-  venue: Creative AI for Live Interactive Performances (Cham, Feb. 2026), 83–97
+  venue: Creative AI for Live Interactive Performances (Cham, 2026), 83–97
   note: AAAI'26 International Workshop on Creative AI for Live Interactive Performances
   award: false
   areas:
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1007/978-3-032-16893-1_6
@@ -250,7 +248,6 @@
   note: ''
   award: false
   areas:
-  - multimodal
   - responsible-ai
   links:
   - label: paper
@@ -261,10 +258,10 @@
   title: Simulated Interactive Debugging
   authors: Noller, Y., Chandra, E., Chandrashekar, S., **Choo, K.T.W.**, Jegourel, C., Kurniawan, O. and Poskitt, C.M.
   venue: 2025 40th IEEE/ACM International Conference on Automated Software Engineering (ASE) (2025), 3896–3901
-  note: 'ISSN: 2643-1572'
+  note: ''
   award: false
   areas:
-  - other
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1109/ASE63991.2025.00338
@@ -277,7 +274,7 @@
   note: ''
   award: false
   areas:
-  - other
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3769994.3769997
@@ -286,11 +283,11 @@
   type: conference
   title: Easy Modeling of Man-Made Shapes in Virtual Reality
   authors: Tang, H., Gao, F., **Choo, K.T.W.**, Bickel, B. and Song, P.
-  venue: Pacific Graphics Conference Papers, Posters, and Demos (Oct. 2025)
+  venue: Pacific Graphics Conference Papers, Posters, and Demos (2025)
   note: ''
   award: false
   areas:
-  - multimodal
+  - other
   links:
   - label: paper
     url: https://doi.org/10.2312/pg.20251299
@@ -330,7 +327,7 @@
   award: false
   areas:
   - care
-  - multimodal
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3706599.3720215
@@ -339,8 +336,8 @@
   type: extended
   title: Envisioning an AI-Enhanced Mental Health Ecosystem
   authors: Sim, K.Y.H. and **Choo, K.T.W.**
-  venue: (2025)
-  note: CHI '25 Workshop on Envisioning the Future of Interactive Health
+  venue: CHI '25 Workshop on Envisioning the Future of Interactive Health (2025)
+  note: ''
   award: false
   areas:
   - care
@@ -408,7 +405,7 @@
   note: ''
   award: false
   areas:
-  - multimodal
+  - other
   links:
   - label: paper
     url: https://doi.org/10.1145/3661810.3663464
@@ -434,7 +431,7 @@
   note: ''
   award: false
   areas:
-  - other
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3613905.3650786
@@ -442,7 +439,7 @@
   year: 2024
   type: extended
   title: 'Brinjal: A Web-Plugin for Collaborative Hate Speech Detection'
-  authors: Hee, M.S., Singh, K., Si Min, C.N., **Choo, K.T.W.** and Lee, R.K.
+  authors: Hee, M.S., Singh, K., Ng, C.S.M., **Choo, K.T.W.** and Lee, R.K.
   venue: Companion Proceedings of the ACM Web Conference 2024 (New York, NY, USA, May 2024), 1063–1066
   note: ''
   award: false
@@ -460,7 +457,7 @@
   note: ''
   award: false
   areas:
-  - other
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.1145/3617362
@@ -473,7 +470,7 @@
   note: arXiv:2309.13858 [cs]
   award: false
   areas:
-  - other
+  - collaboration
   links:
   - label: paper
     url: https://doi.org/10.48550/arXiv.2309.13858
@@ -509,7 +506,7 @@
   title: Laboratory Activities for an Introductory Programming Course
   authors: Lee, N.T.S., Kurniawan, O., **Choo, K.T.W.**, De Mari, M. and Perrault, S.
   venue: 2022 IEEE International Conference on Teaching, Assessment and Learning for Engineering (TALE) (2022), 818–821
-  note: 'ISSN: 2470-6698'
+  note: ''
   award: false
   areas:
   - other
