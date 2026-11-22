@@ -11,14 +11,14 @@
     aligned with speech-language pathologists on parent–child interaction (both CHI 2026 Honourable Mention
     Awards), and AI for mental health that supports peer supporters and caregivers. Throughout, I ask who
     carries the responsibility and emotional labour when AI joins a care relationship.
-- slug: multimodal
-  title: "Multimodal Human–AI Interaction"
-  short: Multimodal
+- slug: collaboration
+  title: "Human–AI Collaboration"
+  short: Collaboration
   pastel: 4
   body: >-
-    AI that works across sketch, speech, video, and 3D: TalkSketch, which lets designers sketch and talk to
-    generative AI at the same time; interfaces for modelling physical objects in virtual reality; and
-    drone-based computer vision that gives swimming coaches real-time analytics.
+    How people think and make together with AI, and with each other through AI: CoAIcoder, where AI mediates
+    collaboration between qualitative analysts; TalkSketch, which lets designers sketch and talk to generative
+    AI at the same time; and AI-assisted debugging for novice programmers.
 - slug: responsible-ai
   title: "Responsible AI: Risks and Robustness of Language Models"
   short: Responsible AI
