@@ -32,7 +32,7 @@ redirect_from:
 - Chenyu Zhao, SUTD (Masters, graduated 2025)
 - Charlotte Ng Si Min, SUTD (Masters, graduated 2025)
 - Kailin Chen, SUTD (Masters, graduated 2025)
-- Gionnieve Lim, SUTD (PhD, co-advised with Simon Perrault, graduated 2024)
+- Gionnieve Lim, SUTD (PhD, co-advised with Simon Perrault, graduated 2025)
 - Kohleen Tijing Fortuno, SUTD (Masters, graduated 2024)
 - Gao Jie, SUTD (PhD, co-advised with Simon Perrault, graduated 2023; now tenure-track faculty at Monash University)
 - Ethan Lim Swee Hao, SUTD (Masters, graduated 2022)
