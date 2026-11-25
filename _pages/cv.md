@@ -23,19 +23,6 @@ redirect_from:
 
 <!--## Skills-->
 
-## Grants & Funding
-<!-- Hand-maintained, no generator, no confidentiality filter (unlike
-     publications.md). List only awarded/announced grants — never copy this
-     straight from personal/cv/_cv_content.tex, which can carry a pending,
-     confidential grant gated by \ifshowgrantspending. See
-     dev/personal_page/CLAUDE.md and personal/cv/CLAUDE.md. -->
-- **PI**, Ministry of Education AcRF Tier 1 Grant — SGD 400,000 (2024-2027). *TalkSketch: enhancing concept generation through sketching supported by large multimodal models.*
-- **PI**, Ministry of Education AcRF Tier 1 Grant — SGD 428,158 (2023-2026). *Enhancing mental health support through context-aware text communication systems.*
-- **Co-PI**, SMU-SUTD Joint Research Grant — SGD 369,600 (2023-2025). Transforming competitive swimming with physiological & smart drone-based sensing, analysis and coaching insights.
-- **Co-PI**, SUTD Growth Plan — SGD 692,000 (2021-2024). From BigD to BigD+: an SUTD community-led development of next-gen design education.
-- **Co-PI**, Temasek Labs — SGD 85,000 (2021-2022). Early detection of rumours in social media.
-- **PI**, SUTD Pedagogy Innovation Grant — SGD 11,400 (2020-2021). AI-enabled real-time feedback for instructional videos to enhance learning and attention.
-
 ## Honours & Awards
 - ACM SIGCHI Conference on Human Factors in Computing Systems — Honourable Mention Award (top 5% of submissions), *"Words to Describe What I'm Feeling: Exploring the Potential of AI Agents for High Subjectivity Decisions in Advance Care Planning"* (2026)
 - ACM SIGCHI Conference on Human Factors in Computing Systems — Honourable Mention Award (top 5% of submissions), *"Towards Aligning Multimodal LLMs with Human Experts: A Focus on Parent-Child Interaction"* (2026)
