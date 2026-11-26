@@ -142,6 +142,10 @@ class RecordTest(unittest.TestCase):
         self.assertEqual(rec["authors"], "**Choo, K.T.W.**")
         self.assertEqual(rec["venue"], "Some Venue (Rome, Italy, May 2026), 1\u20135")
 
+    def test_venue_shows_the_article_number_before_the_pages(self):
+        rec = self.one(entry("k", 2026, eid="CSCW108", pages="1--52"))
+        self.assertEqual(rec["venue"], "Some Venue (2026), CSCW108, 1–52")
+
     def test_type_is_the_type_keyword_and_selected_is_not_a_type(self):
         self.assertEqual(self.one(entry("k", 2026, keywords="journal, selected"))["type"], "journal")
         self.assertEqual(self.one(entry("k", 2026, keywords="selected, preprint"))["type"], "preprint")
