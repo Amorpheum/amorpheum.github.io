@@ -22,7 +22,9 @@ redirect_from:
 - Rashmi Gunawardana, SUTD (Masters by Research)
 - Bryan Tan Zhengyu, SUTD (PhD, A*STAR ACIS Scholar, co-advised with Roy Lee)
 
-### Former Graduate Students
+<details class="fold" markdown="1">
+<summary><h3 id="former-graduate-students">Former Graduate Students</h3></summary>
+
 - Aaron Zhe Yu Tua, SUTD (Masters, graduated 2026)
 - Yong Lin Tan, SUTD (Masters, graduated 2026)
 - Kelvin Xian Yao Thian, SUTD (Masters, graduated 2026)
@@ -42,6 +44,8 @@ redirect_from:
 - Ahmad Nurhadi Rahim, SUTD (Masters, co-advised with Simon Perrault, graduated 2021)
 - Atima Tharatipyakul, SUTD (PhD, co-advised with Simon Perrault, graduated 2020)
 - Denice Tuinhof, VU Amsterdam (Masters, co-advised with Lars Lischke and Simon Perrault, graduated Aug 2020)
+
+</details>
 
 ### Student Awards
 - Kellie Yu Hui Sim (PhD) — Google PhD Fellowship for Human-Computer Interaction, 2026. One of twelve HCI recipients worldwide, and the only one in Singapore.
