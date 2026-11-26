@@ -32,7 +32,7 @@
 - key: sim_clayflect_2026
   year: 2026
   type: preprint
-  title: '"I''m Very Happy for It to Start Hallucinating a Little Bit": Using ClayFlect to Negotiate Multimodal AI Representations in Material Meaning-Making'
+  title: '“I’m Very Happy for It to Start Hallucinating a Little Bit”: Using ClayFlect to Negotiate Multimodal AI Representations in Material Meaning-Making'
   authors: Sim, K.Y.H., Nguyen, Q., Han, S.Y. and **Choo, K.T.W.**
   venue: (2026)
   note: arXiv:2610.08943 [cs]
@@ -45,9 +45,9 @@
 - key: sim_is_2025
   year: 2026
   type: journal
-  title: '"Is This Really a Human Peer Supporter?": Misalignments Between Peer Supporters and Experts in LLM-Supported Interactions'
+  title: '‘Is This Really a Human Peer Supporter?’: Misalignments Between Peer Supporters and Experts in LLM-Supported Interactions'
   authors: Sim, K.Y.H., Lee, R.K. and **Choo, K.T.W.**
-  venue: Proc. ACM Hum.-Comput. Interact. (2026)
+  venue: Proc. ACM Hum.-Comput. Interact. (2026), 1–52
   note: ''
   award: false
   areas:
@@ -60,7 +60,7 @@
   type: journal
   title: 'Sword and Shield: Uses and Strategies of LLMs in Navigating Disinformation'
   authors: Lim, G., Tan, B.C.Z., Sim, K.Y.H., Shi, W., Chew, M.H., Hee, M.S., Lee, R.K., Perrault, S.T. and **Choo, K.T.W.**
-  venue: Proc. ACM Hum.-Comput. Interact. (2026)
+  venue: Proc. ACM Hum.-Comput. Interact. (2026), 1–39
   note: ''
   award: false
   areas:
@@ -86,7 +86,7 @@
   type: extended
   title: 'Acts of Configuration: Rethinking Provenance, Temporality and Legitimacy in Post-Mortem Agents'
   authors: Sim, K.Y.H., Foong, P.S., Lim, D., Lim, J. and **Choo, K.T.W.**
-  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026)
+  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026), 305–309
   note: ''
   award: false
   areas:
@@ -99,7 +99,7 @@
   type: extended
   title: 'When Drawing Is Not Enough: Exploring Spontaneous Speech with Sketch for Intent Alignment in Multimodal LLMs'
   authors: Shi, W., Herremans, D. and **Choo, K.T.W.**
-  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026)
+  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026), 445–449
   note: ''
   award: false
   areas:
@@ -110,9 +110,9 @@
 - key: sim_im_2026
   year: 2026
   type: extended
-  title: '"I''m Not Able to Be There for You": Emotional Labour, Responsibility, and AI in Peer Support'
+  title: '‘I’m Not Able to Be There for You’: Emotional Labour, Responsibility, and AI in Peer Support'
   authors: Sim, K.Y.H. and **Choo, K.T.W.**
-  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026)
+  venue: Companion Publication of the 2026 ACM Designing Interactive Systems Conference (2026), 479–485
   note: ''
   award: false
   areas:
@@ -120,19 +120,6 @@
   links:
   - label: paper
     url: https://doi.org/10.1145/3802974.3809470
-- key: sim_redistributing_2026
-  year: 2026
-  type: extended
-  title: 'Redistributing Voice and Responsibility: AI in Relationship-Centred Care'
-  authors: Sim, K.Y.H. and **Choo, K.T.W.**
-  venue: CHI '26 Workshop on Toward Relationship-Centered Care with AI (2026)
-  note: Provocation
-  award: false
-  areas:
-  - care
-  links:
-  - label: paper
-    url: https://doi.org/10.48550/arXiv.2606.00028
 - key: sim_words_2026
   year: 2026
   type: conference
@@ -186,6 +173,19 @@
   links:
   - label: paper
     url: https://doi.org/10.1145/3772363.3798524
+- key: sim_redistributing_2026
+  year: 2026
+  type: extended
+  title: 'Redistributing Voice and Responsibility: AI in Relationship-Centred Care'
+  authors: Sim, K.Y.H. and **Choo, K.T.W.**
+  venue: CHI '26 Workshop on Toward Relationship-Centered Care with AI (2026)
+  note: Provocation
+  award: false
+  areas:
+  - care
+  links:
+  - label: paper
+    url: https://doi.org/10.48550/arXiv.2606.00028
 - key: tran_dronaquatics_2026
   year: 2026
   type: conference
@@ -232,7 +232,7 @@
   title: 'TalkSketch: Multimodal Generative AI for Real-Time Sketch Ideation with Speech'
   authors: Shi, W., Upadhyay, S., Quek, G. and **Choo, K.T.W.**
   venue: Creative AI for Live Interactive Performances (Cham, 2026), 83–97
-  note: AAAI'26 International Workshop on Creative AI for Live Interactive Performances
+  note: AAAI'26 Workshop
   award: false
   areas:
   - collaboration
@@ -307,7 +307,7 @@
 - key: sim_i_2025
   year: 2025
   type: preprint
-  title: '"I Said Things I Needed to Hear Myself": Peer Support as an Emotional, Organisational, and Sociotechnical Practice in Singapore'
+  title: '“I Said Things I Needed to Hear Myself”: Peer Support as an Emotional, Organisational, and Sociotechnical Practice in Singapore'
   authors: Sim, K.Y.H. and **Choo, K.T.W.**
   venue: (2025)
   note: arXiv:2506.09362 [cs]
@@ -557,8 +557,8 @@
   type: extended
   title: Designing a Disembodied Conversational Agent as a Digital Companion for Older Adults
   authors: Nurhadi, A., Perrault, S. and **Choo, K.T.W.**
-  venue: (2021)
-  note: CSCW '21 Conversational User Interfaces Workshop
+  venue: CSCW '21 Conversational User Interfaces Workshop (2021)
+  note: ''
   award: false
   areas:
   - care
@@ -634,19 +634,6 @@
   links:
   - label: paper
     url: https://doi.org/10.1145/3210240.3210331
-- key: kim_vr-based_2018
-  year: 2018
-  type: extended
-  title: 'Empath-D: VR-based Empathetic App Design for Accessibility'
-  authors: Kim, W., **Choo, K.T.W.**, Lee, Y., Misra, A. and Balan, R.K.
-  venue: Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services (New York, NY, USA, 2018), 534
-  note: One-page abstract; full paper listed under Refereed Conference Papers
-  award: false
-  areas:
-  - other
-  links:
-  - label: paper
-    url: https://doi.org/10.1145/3210240.3211108
 - key: vu_smartwatch_2018
   year: 2018
   type: journal
@@ -704,7 +691,7 @@
   type: extended
   title: Enabling multi-device interaction on the go in the MAGI project
   authors: '**Choo, K.T.W.**, Roy, Q. and Davis, R.C.'
-  venue: CHI 2016 Workshop on Interacting with Multi-Device Ecologies "in the wild" (2016)
+  venue: CHI 2016 Workshop on Interacting with Multi-Device Ecologies “in the wild” (2016)
   note: ''
   award: false
   areas:
