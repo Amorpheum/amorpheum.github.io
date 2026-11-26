@@ -123,10 +123,13 @@ def format_venue(entry: dict) -> str:
         context_bits.append(year)
     context = f" ({', '.join(context_bits)})" if context_bits else ""
 
+    eid = strip_latex(entry.get("eid", ""))
+    eid_str = f", {eid}" if eid else ""
+
     pages = entry.get("pages", "").replace("--", "\u2013")
     pages_str = f", {pages}" if pages else ""
 
-    out = venue + context + pages_str
+    out = venue + context + eid_str + pages_str
     return out.strip()
 
 
