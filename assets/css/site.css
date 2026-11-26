@@ -253,6 +253,7 @@ svg line,svg path{stroke:var(--c);fill:none}
 .fold summary::-webkit-details-marker,.year summary::-webkit-details-marker{display:none}
 .fold summary::before,.year summary::before{content:"";flex:none;width:8px;height:8px;margin-inline:4px 2px;border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:rotate(-45deg);transition:transform .15s ease}
 .fold[open]>summary::before,.year[open]>summary::before{transform:rotate(45deg)}
+.fold summary>h1,.fold summary>h2,.fold summary>h3{margin:0;padding:0}
 .fold summary:focus-visible,.year summary:focus-visible{outline:2px solid var(--spec-6);outline-offset:2px;border-radius:var(--radius-s)}
 @media (prefers-reduced-motion:reduce){.fold summary::before,.year summary::before{transition:none}}
 
